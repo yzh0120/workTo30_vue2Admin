@@ -11,34 +11,36 @@ let blank = () => import("@/views/blank.vue")//二级菜单专属
 
 
 export default {
+	//路由
 	namespaced: true, //带命名空间
 	state: {
 		routes: [], //角色的路由   baseRouter + 后台返回的shuju  作用在侧边栏是permission
 		pageStack: [], //页面栈
-		addRoutes: [], //没啥用
+		addRoutes: [], //没啥用 后台返回的路由
 		elMainLoading: false, //路由跳转
 		//缓存实例
 		keepAliveComponentInstance: {},
-		
-		preRoute: null,//最后的路由
-		preUserId: undefined,//上一个用户的的id
 		selectedTagPath: {}, //当前路由，或者右键选择的路由
+
+		// preRoute: null,//最后的路由
+		// preUserId: undefined,//上一个用户的的id
+		
 	},
 
 	mutations: {
 		set_selectedTagPath(state, params) {
 			state.selectedTagPath = params
 		},
-		preUserId_fn(state, params){
-			state.preUserId = params
-		},
-		preRoute_fn(state, params) {
-			if (params && params.name !== 'login' && params.name !== '404' && params.name !== '401') {
-				state.preRoute = params
-			} else {
+		// preUserId_fn(state, params){
+		// 	state.preUserId = params
+		// },
+		// preRoute_fn(state, params) {
+		// 	if (params && params.name !== 'login' && params.name !== '404' && params.name !== '401') {
+		// 		state.preRoute = params
+		// 	} else {
 
-			}
-		},
+		// 	}
+		// },
 		keepAliveComponentInstance_fn(state, params) {
 			state.keepAliveComponentInstance = params
 		},

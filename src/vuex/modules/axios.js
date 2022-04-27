@@ -1,4 +1,5 @@
 export default {
+	// 每次axios的请求 会控制main页面
 	namespaced: true, //带命名空间
 	state: {
 		//请求的加载信息
