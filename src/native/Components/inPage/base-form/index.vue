@@ -295,6 +295,7 @@ export default {
   },
   created() {
     this._updatedata(this.data);
+    this.autoTrigger();
   },
   mounted() {
     //this._addShow(this.data) //增加show 因为只会写在watch(写在data:{}也有效果)  所以不watch 暂时不用
@@ -406,6 +407,21 @@ export default {
     },
   },
   methods: {
+    autoTrigger() {
+      this.data.list.forEach((item) => {
+        if (item.rules && item.rules.length) {
+          if (item.type == "select" || item.type == "treeselect") {
+            item.rules.forEach((rule) => {
+              rule.trigger = "change";
+            });
+          } else {
+            item.rules.forEach((rule) => {
+              rule.trigger = "blur";
+            });
+          }
+        }
+      });
+    },
     sync() {
       this.againShow = false;
       this.$nextTick(() => {

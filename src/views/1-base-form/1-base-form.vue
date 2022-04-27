@@ -1,5 +1,6 @@
 <template>
   <page>
+    <el-button type="primary" @click="go">主要按钮</el-button>
     <base-form :data="form" ref="form" @event="formEvent">
       <template #mySlot>
         <el-input placeholder="请输入内容" v-model="form.data.xxx">
@@ -26,7 +27,7 @@ export default {
             text: "label1",
             children: "subOptions",
             // labelWidth: "0px",
-            rules: [{ required: true, message: "请输入", trigger: "blur" }],
+            rules: [{ required: true, message: "请输入" }],
           },
           {
             type: "treeselect",
@@ -37,7 +38,7 @@ export default {
             id: "id1",
             text: "label1",
             children: "subOptions",
-            rules: [{ required: true, message: "请输入", trigger: "blur" }],
+            rules: [{ required: true, message: "请输入" }],
           },
           ////////////////////////////////////////////////////////////////////////
           {
@@ -45,8 +46,8 @@ export default {
             field: "_input",
             title: "普通输入框",
             rules: [
-              { required: true, message: "请输入", trigger: "blur" },
-              { validator: self.$check.demo, trigger: "blur" },
+              { required: true, message: "请输入" },
+              { validator: self.$check.demo },
             ],
           },
           {
@@ -92,6 +93,7 @@ export default {
                 value: "2",
               },
             ],
+            rules: [{ required: true, message: "请输入" }],
           },
           //   {
           //     type: "select",
@@ -281,6 +283,9 @@ export default {
           console.log(this.form.data);
         }
       }
+    },
+    go() {
+      this.$refs.form.check();
     },
   },
 };

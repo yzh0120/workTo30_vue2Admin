@@ -3,7 +3,7 @@
     <page>
       <el-button @click="add">点我</el-button>
       <alert :data="alertData" @event="alertEvent">
-        <base-form :data="formAlert"></base-form>
+        <base-form :data="formAlert" ref="formAlert"></base-form>
       </alert>
     </page>
   </div>
@@ -44,7 +44,8 @@ export default {
         this.alertEvent({ name: "cancel" });
       }
       if (e.name == "cancel") {
-        this.formAlert.data = {};
+        // this.formAlert.data = {};
+        this.$refs.formAlert.reset();
         this.alertData.flag = false;
       }
     },

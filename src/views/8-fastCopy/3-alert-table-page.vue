@@ -28,7 +28,7 @@
     <!-- 弹窗 -->
     <alert :data="alertData" @event="alertEvent">
       <!-- 弹窗的表单 -->
-      <base-form :data="formAlert"></base-form>
+      <base-form :data="formAlert" ref="formAlert"></base-form>
     </alert>
   </page>
 </template>
@@ -129,7 +129,8 @@ export default {
         this.alertEvent({ name: "cancel" });
       }
       if (e.name == "cancel") {
-        this.formAlert.data = {};
+        // this.formAlert.data = {};
+        this.$refs.formAlert.reset();
         this.alertData.flag = false;
       }
     },
