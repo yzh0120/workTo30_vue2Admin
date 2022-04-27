@@ -28,15 +28,15 @@
 <script>
 export default {
   watch: {
-    $route: {
-      //保存上一次的路由,之所以放在这里 是保证已经进了路由了
-      handler(newVal, oldVal) {
-        if (oldVal) {
-          this.$store.commit("router/preRoute_fn", oldVal);
-        }
-      },
-      immediate: true,
-    },
+    // $route: {
+    //   //保存上一次的路由,之所以放在这里 是保证已经进了路由了
+    //   handler(newVal, oldVal) {
+    //     if (oldVal) {
+    //       this.$store.commit("router/preRoute_fn", oldVal);
+    //     }
+    //   },
+    //   immediate: true,
+    // },
     "$store.state.setup.navStyle": {
       handler(newVal, oldVal) {
         window.document.documentElement.setAttribute("class", newVal);
