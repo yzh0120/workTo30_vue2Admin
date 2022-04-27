@@ -410,13 +410,17 @@ export default {
     autoTrigger() {
       this.data.list.forEach((item) => {
         if (item.rules && item.rules.length) {
-          if (item.type == "select" || item.type == "treeselect") {
+          if (item.type == "select") {
             item.rules.forEach((rule) => {
-              rule.trigger = "change";
+              rule["trigger"] = "change";
+            });
+          } else if (item.type == "treeselect") {
+            item.rules.forEach((rule) => {
+              rule["trigger"] = ["blur", "change"];
             });
           } else {
             item.rules.forEach((rule) => {
-              rule.trigger = "blur";
+              rule["trigger"] = "blur";
             });
           }
         }

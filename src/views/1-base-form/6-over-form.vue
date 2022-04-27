@@ -16,8 +16,8 @@ export default {
             field: "_input",
             title: "普通输入框",
             rules: [
-              { required: true, message: "请输入", trigger: "blur" },
-              { validator: self.$check.demo, trigger: "blur" },
+              { required: true, message: "请输入" },
+              { validator: self.$check.demo },
             ],
             tip: true, //重点
           },

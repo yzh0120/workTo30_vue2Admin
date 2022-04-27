@@ -72,8 +72,8 @@ export default {
             title: "A为特定值时,则非必填",
 
             rules: [
-              { required: true, message: "请输入", trigger: "blur" },
-              { validator: self.$check.demo, trigger: "blur" },
+              { required: true, message: "请输入" },
+              { validator: self.$check.demo },
             ],
           },
 
@@ -185,8 +185,8 @@ export default {
           this._setList(this.form, "_inputRules", { rules: [] });
         } else {
           let _input2Arr = [
-            { required: true, message: "请输入", trigger: "blur" },
-            { validator: this.$check.demo, trigger: "blur" },
+            { required: true, message: "请输入" },
+            { validator: this.$check.demo },
           ];
           this._setList(this.form, "_inputRules", { rules: _input2Arr });
         }

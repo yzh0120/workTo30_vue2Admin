@@ -27,7 +27,7 @@ export default {
             text: "label1",
             children: "subOptions",
             // labelWidth: "0px",
-            rules: [{ required: true, message: "请输入", trigger: "blur" }],
+            rules: [{ required: true, message: "请输入" }],
           },
           {
             type: "treeselect",
@@ -38,7 +38,7 @@ export default {
             id: "id1",
             text: "label1",
             children: "subOptions",
-            rules: [{ required: true, message: "请输入", trigger: "blur" }],
+            rules: [{ required: true, message: "请输入" }],
           },
           ////////////////////////////////////////////////////////////////////////
           {
@@ -46,8 +46,8 @@ export default {
             field: "_input",
             title: "普通输入框",
             rules: [
-              { required: true, message: "请输入", trigger: "blur" },
-              { validator: self.$check.demo, trigger: "blur" },
+              { required: true, message: "请输入" },
+              { validator: self.$check.demo },
             ],
           },
           {
