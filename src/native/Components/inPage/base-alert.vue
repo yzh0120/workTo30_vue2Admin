@@ -57,10 +57,10 @@ export default {
       },
     },
     w() {
-      return this.data.width ? this.data.width : "1066px";
+      return this.data.width ? this.data.width : "80%";
     },
     h() {
-      return this.data.height ? this.data.height : "600px";
+      return this.data.height ? this.data.height : "80%";
     },
     title() {
       return this.data.title ? this.data.title : "标题";
