@@ -53,19 +53,7 @@ module.exports = {
 		}
 
 	},
-	chainWebpack: (config) => {
-		// 生产环境，开启js\css压缩
-		if (process.env.NODE_ENV === 'production') {
-			/* gzip压缩 */
-			// config.plugin('compressionPlugin').use(new CompressionPlugin({
-			// 	test: /\.(js|css|scss)$/, // 匹配文件名
-			// 	threshold: 10240, // 对超过10k的数据压缩
-			// 	minRatio: 0.8,
-			// 	deleteOriginalAssets: true // 删除源文件
-			// }))
-		}
 
-	},
 	css: { // css配置
 		loaderOptions: {
 			sass: {
@@ -81,5 +69,23 @@ module.exports = {
 		open: process.env.VUE_APP_OPEN === 'false' ? false : true, // 自动打开浏览器
 		host: '0.0.0.0', // 真机模拟，使用
 		port: 8888, // 前台代理端口号
-	}
+	},
+	chainWebpack: (config) => {
+		config.plugin('html')
+		.tap(args => {
+			args[0].title = "保函业务操作系统";
+			return args;
+		})
+		// 生产环境，开启js\css压缩
+		if (process.env.NODE_ENV === 'production') {
+			/* gzip压缩 */
+			// config.plugin('compressionPlugin').use(new CompressionPlugin({
+			// 	test: /\.(js|css|scss)$/, // 匹配文件名
+			// 	threshold: 10240, // 对超过10k的数据压缩
+			// 	minRatio: 0.8,
+			// 	deleteOriginalAssets: true // 删除源文件
+			// }))
+		}
+
+	},
 }
