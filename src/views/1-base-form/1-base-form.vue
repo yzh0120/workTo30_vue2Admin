@@ -51,6 +51,15 @@ export default {
             ],
           },
           {
+            type: "formatInput",
+            field: "_formatInput",
+            title: "金额格式化输入框",
+            rules: [
+              { required: true, message: "请输入" },
+              { validator: self.$check.demo },
+            ],
+          },
+          {
             type: "input",
             field: "_input_prepend",
             title: "前缀输入框",

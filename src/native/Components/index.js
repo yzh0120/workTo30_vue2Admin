@@ -11,10 +11,10 @@ import svgIconComponent from './inPage/svgIcon.vue' //svg
 import detailComponent from './inPage/detail/detail.vue' //detail
 import detailLinkComponent from './inPage/detail/detail-link.vue' //detail
 import fileListComponent from './inPage/fileList.vue' //detail
-import fileListShowComponent from './inPage/fileListShow.vue'//upload
-import oneFileComponent from './inPage/oneFile.vue'//upload
-import moneyInputComponent from './inPage/moneyInput.vue'//upload
-import navDetailComponent from './base/nav-detail.vue'//upload
+import fileListShowComponent from './inPage/fileListShow.vue'//
+import oneFileComponent from './inPage/oneFile.vue'//
+import moneyInputComponent from './inPage/moneyInput.vue'//
+import navDetailComponent from './base/nav-detail.vue'//
 
 export const navDetail = {
     install: function (Vue) {

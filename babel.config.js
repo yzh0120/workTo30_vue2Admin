@@ -7,6 +7,9 @@
 module.exports = {
   presets: ["@vue/app"],
   plugins: [
+    //vue中使用es6的链判断符
+    //npm install --save-dev @babel/plugin-proposal-optional-chaining
+    "@babel/plugin-proposal-optional-chaining",
     // element官方教程
     [
       "component",

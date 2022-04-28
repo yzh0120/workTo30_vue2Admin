@@ -239,6 +239,7 @@
 </template>
 
 <script>
+import formatInput from "./base-moneyInput.vue";
 import baseInput from "./base-input.vue";
 import baseInputrange from "./base-inputrange.vue";
 import baseTreeselect from "./base-treeselect.vue";
@@ -266,6 +267,7 @@ export default {
     baseAuto,
     baseTreeselect,
     baseInputrange,
+    formatInput,
   },
   props: {
     data: {
@@ -478,6 +480,8 @@ export default {
     currentComponent(componentType) {
       if (componentType == "auto") {
         return "baseAuto";
+      } else if (componentType == "formatInput") {
+        return "formatInput";
       } else if (componentType == "treeselect") {
         return "baseTreeselect";
       } else if (componentType == "checkbox") {
