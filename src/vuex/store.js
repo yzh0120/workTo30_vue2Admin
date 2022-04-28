@@ -1,6 +1,7 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+import getters from './getters'
 /*引入 模块化文件*/
 Vue.use(Vuex)
 
@@ -32,7 +33,7 @@ export default new Vuex.Store({
 	//  state,
 	// mutations,
 	// actions,
-	// getters,
+	getters,
 	//注册vuex模块
 	modules
 })
