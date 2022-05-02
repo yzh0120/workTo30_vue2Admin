@@ -1,9 +1,14 @@
 <template>
   <page>
-    <el-button @click="confirmData.field = true">新增</el-button>
+    <el-button @click="add">新增</el-button>
     <vxe-grid class="reverse-table" v-bind="gridOptions">
       <template #demo="{ row, columnIndex }">
         <div>
+          {{}}
+          <!-- 
+            columnIndex  代表了第几列  
+            col${index}   是代表了第几行的值
+           -->
           <!-- <div v-if="columnIndex == 1">
 			                <span v-if="row.col0 == '科目'">{{eval(`row.col${columnIndex}`)  }}</span>
 			                <span v-else>{{row.col1 | formatMoney}}</span>
@@ -20,13 +25,25 @@
           <span v-if="row.col0 == '科目'">{{ eval(row, columnIndex) }}</span>
           <span v-else>{{ eval(row, columnIndex) }}</span>
 
-          <el-button type="text" v-if="row.col0 == '科目'">编辑</el-button>
+          <el-button
+            type="text"
+            v-if="row.col0 == '科目'"
+            @click="edit(row, columnIndex)"
+            >编辑</el-button
+          >
+          <el-button
+            type="text"
+            v-if="row.col0 == '科目'"
+            @click="del(row, columnIndex)"
+            >删除</el-button
+          >
         </div>
       </template>
     </vxe-grid>
 
-    <alert :data="confirmData" @event="event">
-      <base-form :data="formData" @event="event"></base-form>
+    <alert :data="confirmData" @event="alertEvent">
+      {{ formData.data.id }}
+      <base-form :data="formData" ref="form"></base-form>
     </alert>
   </page>
 </template>
@@ -37,13 +54,14 @@ export default {
     return {
       formData: {
         list: [
-          { type: "date", field: "statDate", title: "日期选择器" },
-          { type: "input", field: "moneyFunds", title: "输入框" },
+          { type: "input", field: "statDate", title: "科目" },
+          { type: "input", field: "moneyFunds", title: "货币资金" },
+          { type: "input", field: "id", title: "id" },
         ],
         data: {},
       },
       confirmData: {
-        field: false,
+        flag: false,
         w: "1066px",
         h: "800px",
         title: "基础弹窗",
@@ -56,37 +74,58 @@ export default {
         columns: [],
         data: [],
       },
-      columns: [
+      //这个是给reverseTable使用的  table的字段
+      columnsList: [
         { field: "statDate", title: "科目" },
         { field: "moneyFunds", title: "货币资金" },
       ],
-      myData: [],
+      mytableDataList: [], //这个是给reverseTable使用的  table的数据
     };
   },
   created() {
-    this.reverseTable(this.columns, this.myData);
+    this.reverseTable(this.columnsList, this.mytableDataList);
   },
   methods: {
+    getData(columnsList, list) {
+      this.reverseTable(columnsList, list);
+    },
+    //新增
+    add() {
+      this.confirmData.flag = true;
+      // this.reverseTable(this.columnsList, []);
+    },
+    //编辑
+    edit(row, columnIndex) {
+      this.confirmData.flag = true;
+      this.formData.data = this.$fn.deepClone(
+        this.mytableDataList[columnIndex - 1]
+      );
+    },
+    //删除
+    del(row, columnIndex) {
+      console.log(row, columnIndex);
+    },
+    alertEvent(e) {
+      //确认
+      if (e.name == "confirm") {
+        this.mytableDataList.push(this.$fn.deepClone(this.formData.data));
+
+        this.getData(this.columnsList, this.mytableDataList);
+        this.alertEvent({ name: "cancel" });
+      }
+      //取消
+      if (e.name == "cancel") {
+        this.$refs.form.reset();
+        this.confirmData.flag = false;
+      }
+    },
     eval(row, columnIndex) {
       return row[`col${columnIndex}`];
     },
-    event(e) {
-      if (e.event == "confirm") {
-        // this.myData =[]
-        this.myData.push(this.$fn.deepClone(this.formData.data));
-        this.reverseTable(this.columns, this.myData);
 
-        this.confirmData.field = false;
-        // console.log("点击了确认按钮");
-      }
-      if (e.event == "cancel") {
-        this.confirmData.field = false;
-        console.log("点击了取消按钮");
-      }
-    },
-    // 反转函数
-    reverseTable(columns, list) {
-      const buildData = columns.map((column) => {
+    // 反转函数  设置竖向表格的方法
+    reverseTable(columnsList, list, num) {
+      const buildData = columnsList.map((column) => {
         const item = { col0: column.title };
         list.forEach((row, index) => {
           item[`col${index + 1}`] = row[column.field];
@@ -109,8 +148,73 @@ export default {
           },
         });
       });
+      console.log(buildData, "buildData", buildColumns);
+      /*
+      在没有数据的情况下
+        buildData :[
+          {
+            col0: "科目"
+            _XID: "row_133"
+          },
+          {
+            col0: "货币资金"
+            _XID: "row_134"
+          }
+        ]
+
+        buildColumns:[
+          {              
+            field: "col0"
+            fixed: "left"
+            width: 80
+          },
+        ]
+      */
+      /*
+      在有数据的情况下
+        buildData :[
+          {
+            col0: "科目"   //这是来自this.columnsList的标题
+            col1: "科目1"  //这是手动填写的
+            col2: "科目2"  //这是手动填写的
+            _XID: "row_133"
+          },
+          {
+            col0: "货币资金"   //这是来自this.columnsList的标题
+            col1: "货币资金1"  //这是手动填写的
+            col2: "货币资金2"  //这是手动填写的
+            _XID: "row_134"
+          }
+        ]
+
+        buildColumns:[
+          {               //这是title
+            field: "col0"
+            fixed: "left"
+            width: 80
+          },
+          {               //这是手动填写的
+            field: "col1"
+            minWidth: 120,
+            slots: {
+              default: "demo",
+            },
+          },
+          {                //这是手动填写的
+            field: "col2"
+            minWidth: 120,
+            slots: {
+              default: "demo",
+            },
+          }
+        ]
+      */
       this.gridOptions.data = buildData;
       this.gridOptions.columns = buildColumns;
+      /*
+      this[`gridOptions${num}`].data = buildData;
+      this[`gridOptions${num}`].columns = buildColumns;
+      */
     },
   },
 };

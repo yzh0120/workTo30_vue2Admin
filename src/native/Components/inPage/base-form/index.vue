@@ -435,6 +435,11 @@ export default {
       });
     },
     reset() {
+      this.$refs.form.resetFields();
+      for (let key of Object.keys(this.data.data)) {
+        this.data.data[key] = null;
+      }
+
       //不要在外部的reset方法里面
 
       //1 如果在 create里面操作(不包括延迟函数)  this.formData.data.__input = 'create'/this.formData.data = {__input:"setTime mounted"}
@@ -444,12 +449,6 @@ export default {
       //reset返回data的初始值
 
       //3  如果直接给this.data.data  赋值 ,在重置的时候 字段和字段的值不会变
-
-      this.$refs.form.resetFields();
-      for (let key of Object.keys(this.data.data)) {
-        this.data.data[key] = "";
-      }
-
       // for (let key of Object.keys(this.data.data)) {//解决问题 3
       //        let res = Object.keys(this._dataxxx).some((key2)=>{
       // 			return key == key2
