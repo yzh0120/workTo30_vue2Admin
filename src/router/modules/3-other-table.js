@@ -64,6 +64,15 @@ export default {
                 title: '选择性多选',
                 icon: "input",
             }
+        },
+        {
+            path: 'localTable',
+            name: 'layout-localTable',
+            component: () => import(/* webpackChunkName: "7-local-table" */ "@/views/3-other-table/7-local-table.vue"),
+            meta: {
+                title: '本地表格',
+                icon: "input",
+            }
         }
     ]
 }
