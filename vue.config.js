@@ -41,8 +41,6 @@ module.exports = {
 			            },
 					}
 
-		} else { // 为非生产环境修改配置...
-
 		}
 		config.resolve = { //配置别名和默认后缀
 			extensions: ['.js', '.json', '.vue'], //配置文件后缀 import demo from "index", 如果没有.js 就找.json ,然后.vue
