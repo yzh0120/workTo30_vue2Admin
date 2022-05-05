@@ -1,5 +1,5 @@
 let layout = () => import("@/layout/index.vue")
-let blank = () => import("@/views/blank.vue")//二级菜单专属
+let blank = () => import("@/views/blank.vue") //二级菜单专属
 
 export default {
 	path: '/VCharts',
@@ -12,11 +12,10 @@ export default {
 		title: '数据可视化',
 		icon: "tubiao-zhexiantu",
 	},
-	children: [
-		{
+	children: [{
 			path: 'histogram',
 			name: "VCharts-histogram",
-			component: blank,//() => import(/* webpackChunkName: "VCharts-histogram" */"@/views/10-vCharts/histogram.vue"),
+			component: blank, //() => import(/* webpackChunkName: "VCharts-histogram" */"@/views/10-vCharts/histogram.vue"),
 			redirect: {
 				name: "VCharts-histogram-base"
 			},
@@ -24,15 +23,14 @@ export default {
 				title: '柱状图',
 				icon: "tubiao-zhexiantu",
 			},
-			children: [
-				{
+			children: [{
 					path: 'base',
 					name: "VCharts-histogram-base",
 					meta: {
 						title: '基础',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-base" */"@/views/10-vCharts/1-histogram/1-base.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-base" */ "@/views/10-vCharts/1-histogram/1-base.vue"),
 				},
 				{
 					path: 'metrics',
@@ -41,7 +39,7 @@ export default {
 						title: '设置显示的指标维度',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-metrics" */"@/views/10-vCharts/1-histogram/2-metrics.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-metrics" */ "@/views/10-vCharts/1-histogram/2-metrics.vue"),
 				},
 				{
 					path: 'axisSite',
@@ -50,7 +48,7 @@ export default {
 						title: '设置左右y轴',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-axisSite" */"@/views/10-vCharts/1-histogram/3-axisSite.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-axisSite" */ "@/views/10-vCharts/1-histogram/3-axisSite.vue"),
 				},
 				// {
 				// 	path: 'xdeg',
@@ -68,7 +66,7 @@ export default {
 						title: '堆叠面积图',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-stack" */"@/views/10-vCharts/1-histogram/4-stack.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-stack" */ "@/views/10-vCharts/1-histogram/4-stack.vue"),
 				},
 				{
 					path: 'alias',
@@ -77,7 +75,7 @@ export default {
 						title: '设置别名',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-alias" */"@/views/10-vCharts/1-histogram/5-alias.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-alias" */ "@/views/10-vCharts/1-histogram/5-alias.vue"),
 				},
 				{
 					path: 'shouNum',
@@ -86,7 +84,7 @@ export default {
 						title: '在柱状图上显示指标数值',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-shouNum" */"@/views/10-vCharts/1-histogram/6-shouNum.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-shouNum" */ "@/views/10-vCharts/1-histogram/6-shouNum.vue"),
 				},
 				{
 					path: 'xAxisTyp',
@@ -95,7 +93,7 @@ export default {
 						title: '设置X轴为连续的数值轴',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-xAxisTyp" */"@/views/10-vCharts/1-histogram/7-xAxisTyp.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-xAxisTyp" */ "@/views/10-vCharts/1-histogram/7-xAxisTyp.vue"),
 				},
 				{
 					path: 'addLine',
@@ -104,7 +102,7 @@ export default {
 						title: '柱状图+折线图',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-addLine" */"@/views/10-vCharts/1-histogram/8-addLine.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-addLine" */ "@/views/10-vCharts/1-histogram/8-addLine.vue"),
 				},
 				{
 					path: 'fn',
@@ -113,7 +111,7 @@ export default {
 						title: '图表生命钩子函数',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-fn" */"@/views/10-vCharts/1-histogram/9-fn.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-fn" */ "@/views/10-vCharts/1-histogram/9-fn.vue"),
 				},
 				{
 					path: 'extend',
@@ -122,7 +120,7 @@ export default {
 						title: 'extend',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-extend" */"@/views/10-vCharts/1-histogram/10-extend.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-extend" */ "@/views/10-vCharts/1-histogram/10-extend.vue"),
 				},
 				{
 					path: 'self',
@@ -131,12 +129,12 @@ export default {
 						title: '自定义配置',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-histogram-self" */"@/views/10-vCharts/1-histogram/11-self.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-histogram-self" */ "@/views/10-vCharts/1-histogram/11-self.vue"),
 				},
 				{
 					path: 'other',
 					name: "VCharts-histogram-other",
-					component: blank,//() => import(/* webpackChunkName: "VCharts-Pie" */"@/views/10-vCharts/pie.vue"),
+					component: blank, //() => import(/* webpackChunkName: "VCharts-Pie" */"@/views/10-vCharts/pie.vue"),
 					redirect: {
 						name: "VCharts-histogram-other-one"
 					},
@@ -144,15 +142,14 @@ export default {
 						title: '其他的',
 						icon: "tubiao-zhexiantu",
 					},
-					children: [
-						{
+					children: [{
 							path: 'one',
 							name: "VCharts-histogram-other-one",
 							meta: {
 								title: '同指标不同颜色',
 								icon: "tubiao-zhexiantu",
 							},
-							component: () => import(/* webpackChunkName: "VCharts-histogram-other-one" */"@/views/10-vCharts/1-histogram/other/1-one.vue"),
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-one" */ "@/views/10-vCharts/1-histogram/other/1-one.vue"),
 						},
 						{
 							path: 'two',
@@ -161,7 +158,7 @@ export default {
 								title: '不同指标不同颜色',
 								icon: "tubiao-zhexiantu",
 							},
-							component: () => import(/* webpackChunkName: "VCharts-histogram-other-two" */"@/views/10-vCharts/1-histogram/other/2-two.vue"),
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-two" */ "@/views/10-vCharts/1-histogram/other/2-two.vue"),
 						},
 						{
 							path: 'three',
@@ -170,7 +167,7 @@ export default {
 								title: '图例背景色',
 								icon: "tubiao-zhexiantu",
 							},
-							component: () => import(/* webpackChunkName: "VCharts-histogram-other-three" */"@/views/10-vCharts/1-histogram/other/3-three.vue"),
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-three" */ "@/views/10-vCharts/1-histogram/other/3-three.vue"),
 						},
 						{
 							path: 'four',
@@ -179,7 +176,7 @@ export default {
 								title: '整个图盘的背景色',
 								icon: "tubiao-zhexiantu",
 							},
-							component: () => import(/* webpackChunkName: "VCharts-histogram-other-four" */"@/views/10-vCharts/1-histogram/other/4-four.vue"),
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-four" */ "@/views/10-vCharts/1-histogram/other/4-four.vue"),
 						},
 						{
 							path: 'five',
@@ -188,7 +185,7 @@ export default {
 								title: 'x轴数值倾斜',
 								icon: "tubiao-zhexiantu",
 							},
-							component: () => import(/* webpackChunkName: "VCharts-histogram-other-five" */"@/views/10-vCharts/1-histogram/other/5-five.vue"),
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-five" */ "@/views/10-vCharts/1-histogram/other/5-five.vue"),
 						},
 						{
 							path: 'six',
@@ -197,7 +194,7 @@ export default {
 								title: '不显示y轴第二个指标的网格线',
 								icon: "tubiao-zhexiantu",
 							},
-							component: () => import(/* webpackChunkName: "VCharts-histogram-other-six" */"@/views/10-vCharts/1-histogram/other/6-six.vue"),
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-six" */ "@/views/10-vCharts/1-histogram/other/6-six.vue"),
 						},
 						{
 							path: 'seven',
@@ -206,7 +203,7 @@ export default {
 								title: 'y轴的最小值与最大值',
 								icon: "tubiao-zhexiantu",
 							},
-							component: () => import(/* webpackChunkName: "VCharts-histogram-other-seven" */"@/views/10-vCharts/1-histogram/other/7-seven.vue"),
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-seven" */ "@/views/10-vCharts/1-histogram/other/7-seven.vue"),
 						},
 						{
 							path: 'dataZoom',
@@ -215,7 +212,7 @@ export default {
 								title: "缩放",
 								icon: "tubiao-zhexiantu",
 							},
-							component: () => import(/* webpackChunkName: "VCharts-histogram-other-seven" */"@/views/10-vCharts/1-histogram/other/8-dataZoom.vue"),
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-seven" */ "@/views/10-vCharts/1-histogram/other/8-dataZoom.vue"),
 						},
 						{
 							path: 'tooltip',
@@ -224,7 +221,16 @@ export default {
 								title: "tooltip",
 								icon: "tubiao-zhexiantu",
 							},
-							component: () => import(/* webpackChunkName: "VCharts-histogram-other-seven" */"@/views/10-vCharts/1-histogram/other/9-tooltip.vue"),
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-seven" */ "@/views/10-vCharts/1-histogram/other/9-tooltip.vue"),
+						},
+						{
+							path: 'minInterval',
+							name: "VCharts-histogram-other-minInterval",
+							meta: {
+								title: "纵坐标为整数",
+								icon: "tubiao-zhexiantu",
+							},
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-seven" */ "@/views/10-vCharts/1-histogram/other/10-minInterval.vue"),
 						},
 					]
 				}
@@ -241,22 +247,20 @@ export default {
 				title: '折线图',
 				icon: 'e79a',
 			},
-			children: [
-				{
-					path: 'base',
-					name: "VCharts-line-base",
-					meta: {
-						title: '折线-基础',
-						icon: "tubiao-zhexiantu",
-					},
-					component: () => import(/* webpackChunkName: "VCharts-line-base" */"@/views/10-vCharts/2-line/1-base.vue"),
-				}
-			]
+			children: [{
+				path: 'base',
+				name: "VCharts-line-base",
+				meta: {
+					title: '折线-基础',
+					icon: "tubiao-zhexiantu",
+				},
+				component: () => import( /* webpackChunkName: "VCharts-line-base" */ "@/views/10-vCharts/2-line/1-base.vue"),
+			}]
 		},
 		{
 			path: 'pie',
 			name: "VCharts-pie",
-			component: blank,//() => import(/* webpackChunkName: "VCharts-Pie" */"@/views/10-vCharts/pie.vue"),
+			component: blank, //() => import(/* webpackChunkName: "VCharts-Pie" */"@/views/10-vCharts/pie.vue"),
 			redirect: {
 				name: "VCharts-pie-base"
 			},
@@ -264,15 +268,14 @@ export default {
 				title: '饼图',
 				icon: "tubiao-zhexiantu",
 			},
-			children: [
-				{
+			children: [{
 					path: 'base',
 					name: "VCharts-pie-base",
 					meta: {
 						title: '基础',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-pie-base" */"@/views/10-vCharts/3-pie/1-base.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-pie-base" */ "@/views/10-vCharts/3-pie/1-base.vue"),
 				},
 				{
 					path: 'autoAnimation',
@@ -281,10 +284,10 @@ export default {
 						title: '饼图自动切换动画',
 						icon: "tubiao-zhexiantu",
 					},
-					component: () => import(/* webpackChunkName: "VCharts-pie-auto-animation" */"@/views/10-vCharts/3-pie/2-auto-animation.vue"),
+					component: () => import( /* webpackChunkName: "VCharts-pie-auto-animation" */ "@/views/10-vCharts/3-pie/2-auto-animation.vue"),
 				}
 			]
 		},
-		
+
 	]
 }
