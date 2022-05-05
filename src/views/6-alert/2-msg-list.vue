@@ -46,7 +46,8 @@ export default {
       }
       if (e.name == "cancel") {
         // this.formAlert.data = {};
-        this.$refs.formAlert.reset();
+        // this.$refs.formAlert.reset();
+        this._reset(this.formAlert)
         this.alertData.flag = false;
       }
     },

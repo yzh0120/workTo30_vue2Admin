@@ -126,9 +126,11 @@ export default {
 			}
 
 		},
+		//重置表单数据
 		_reset(formInfo) {
 			for (let key of Object.keys(formInfo)) {
-				formInfo[key] = null
+				// formInfo[key] = null
+				this.$set(formInfo, key, null)
 			}
 		}
 	}
