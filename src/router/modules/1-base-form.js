@@ -83,5 +83,14 @@ export default {
                 icon: "input",
             }
         },
+        {
+            path: 'test',
+            name: 'baseForm-test',
+            component: () => import( /* webpackChunkName: "7-test-form" */ "@/views/1-base-form/9-test-form.vue"),
+            meta: {
+                title: '测试',
+                icon: "input",
+            }
+        },
     ]
 }
