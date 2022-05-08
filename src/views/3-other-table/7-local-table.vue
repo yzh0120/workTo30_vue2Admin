@@ -13,12 +13,8 @@
     <!-- 表格 -->
     <base-table :data="table" @event="tableEvent">
       <template #do="{ scope }">
-        <el-button type="text" @click="edit(scope.row, scope.$index)"
-          >编辑</el-button
-        >
-        <el-button type="text" @click="del(scope.row, scope.$index)"
-          >删除</el-button
-        >
+        <el-button type="text" @click="edit(scope.row, scope.$index)">编辑</el-button>
+        <el-button type="text" @click="del(scope.row, scope.$index)">删除</el-button>
       </template>
     </base-table>
 
@@ -134,7 +130,8 @@ export default {
       }
       if (e.name == "cancel") {
         // this.formAlert.data = {};
-        this.$refs.formAlert.reset();
+        // this.$refs.formAlert.reset();
+        this._reset(this.formAlert)
         this.alertData.flag = false;
       }
     },

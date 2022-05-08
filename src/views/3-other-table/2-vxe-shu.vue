@@ -25,18 +25,8 @@
           <span v-if="row.col0 == '科目'">{{ eval(row, columnIndex) }}</span>
           <span v-else>{{ eval(row, columnIndex) }}</span>
 
-          <el-button
-            type="text"
-            v-if="row.col0 == '科目'"
-            @click="edit(row, columnIndex)"
-            >编辑</el-button
-          >
-          <el-button
-            type="text"
-            v-if="row.col0 == '科目'"
-            @click="del(row, columnIndex)"
-            >删除</el-button
-          >
+          <el-button type="text" v-if="row.col0 == '科目'" @click="edit(row, columnIndex)">编辑</el-button>
+          <el-button type="text" v-if="row.col0 == '科目'" @click="del(row, columnIndex)">删除</el-button>
         </div>
       </template>
     </vxe-grid>
@@ -115,7 +105,8 @@ export default {
       }
       //取消
       if (e.name == "cancel") {
-        this.$refs.form.reset();
+        // this.$refs.form.reset();
+        this._reset(this.formData)
         this.confirmData.flag = false;
       }
     },

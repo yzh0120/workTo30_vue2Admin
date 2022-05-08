@@ -20,83 +20,41 @@
  -->
 
 <template>
-  <el-form
-    ref="form"
-    class="page-form"
-    :model="formData"
-    :label-width="labelWidth"
-    style="margin-top: 20px"
-    :inline="inline"
-    :size="size"
-    @submit.native.prevent
-    :disabled="disabled"
-  >
+  <el-form ref="form" class="page-form" :model="formData" :label-width="labelWidth" style="margin-top: 20px"
+    :inline="inline" :size="size" @submit.native.prevent :disabled="disabled">
     <div v-if="againShow">
       <!-- 是否响应式 -->
       <template v-if="isRow">
         <!-- <el-row v-if="isRow"> -->
         <el-row>
-          <el-col
-            :xs="item.xs"
-            :sm="item.sm"
-            :md="item.md"
-            :lg="item.lg"
-            :xl="item.xl"
-            v-for="(item, index) in for_List"
-            :key="index + `row`"
-          >
-            <!-- show(item.show) -->
-            <el-form-item
-              v-if="show(item.show)"
-              :prop="item.field"
-              :label="item.title"
-              :rules="item.rules"
-              :label-width="item.labelWidth"
-            >
+          <el-col :xs="item.xs" :sm="item.sm" :md="item.md" :lg="item.lg" :xl="item.xl"
+            v-for="(item, index) in for_List" :key="index + `row`">
+            <!-- item.show === false ? false : true -->
+            <el-form-item v-if="item.show === false ? false : true" :prop="item.field" :label="item.title"
+              :rules="item.rules" :label-width="item.labelWidth">
               <!-- 是否悬浮提示 -->
-              <el-tooltip
-                class="item"
-                effect="dark"
-                placement="right"
-                v-if="item.tip && formData[item.field]"
-              >
+              <el-tooltip class="item" effect="dark" placement="right" v-if="item.tip && formData[item.field]">
                 <div slot="content">{{ formData[item.field] }}</div>
                 <!-- 是否插槽 -->
                 <template v-if="item.slot">
                   <slot :name="item.slot" />
                 </template>
-                <component
-                  :is="currentComponent(item.type)"
-                  :item="item"
-                  :bossData="data"
-                  @baseFormEvent="
-                    (e) => {
-                      event(e, item);
-                    }
-                  "
-                  :data="formData"
-                  v-else
-                  :dis="disabled"
-                />
+                <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="
+                  (e) => {
+                    event(e, item);
+                  }
+                " :data="formData" v-else :dis="disabled" />
               </el-tooltip>
 
               <div v-else>
                 <template v-if="item.slot">
                   <slot :name="item.slot" />
                 </template>
-                <component
-                  :is="currentComponent(item.type)"
-                  :item="item"
-                  :bossData="data"
-                  @baseFormEvent="
-                    (e) => {
-                      event(e, item);
-                    }
-                  "
-                  :data="formData"
-                  v-else
-                  :dis="disabled"
-                />
+                <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="
+                  (e) => {
+                    event(e, item);
+                  }
+                " :data="formData" v-else :dis="disabled" />
               </div>
             </el-form-item>
           </el-col>
@@ -109,63 +67,33 @@
       <template v-else-if="span">
         <!-- <el-row v-if="isRow"> -->
         <el-row>
-          <el-col
-            :span="item.span ? item.span : 8"
-            v-for="(item, index) in for_List"
-            :key="index + `span`"
-          >
-            <!-- show(item.show) -->
-            <el-form-item
-              v-if="show(item.show)"
-              :prop="item.field"
-              :label="item.title"
-              :rules="item.rules"
-              :label-width="item.labelWidth"
-            >
+          <el-col :span="item.span ? item.span : 8" v-for="(item, index) in for_List" :key="index + `span`">
+            <!-- item.show === false ? false : true -->
+            <el-form-item v-if="item.show === false ? false : true" :prop="item.field" :label="item.title"
+              :rules="item.rules" :label-width="item.labelWidth">
               <!-- 是否悬浮提示 -->
-              <el-tooltip
-                class="item"
-                effect="dark"
-                placement="right"
-                v-if="item.tip && formData[item.field]"
-              >
+              <el-tooltip class="item" effect="dark" placement="right" v-if="item.tip && formData[item.field]">
                 <div slot="content">{{ formData[item.field] }}</div>
                 <!-- 是否插槽 -->
                 <template v-if="item.slot">
                   <slot :name="item.slot" />
                 </template>
-                <component
-                  :is="currentComponent(item.type)"
-                  :item="item"
-                  :bossData="data"
-                  @baseFormEvent="
-                    (e) => {
-                      event(e, item);
-                    }
-                  "
-                  :data="formData"
-                  v-else
-                  :dis="disabled"
-                />
+                <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="
+                  (e) => {
+                    event(e, item);
+                  }
+                " :data="formData" v-else :dis="disabled" />
               </el-tooltip>
 
               <div v-else>
                 <template v-if="item.slot">
                   <slot :name="item.slot" />
                 </template>
-                <component
-                  :is="currentComponent(item.type)"
-                  :item="item"
-                  :bossData="data"
-                  @baseFormEvent="
-                    (e) => {
-                      event(e, item);
-                    }
-                  "
-                  :data="formData"
-                  v-else
-                  :dis="disabled"
-                />
+                <component :is="currentComponent(item.type)" :item="item" :bossData="data" @baseFormEvent="
+                  (e) => {
+                    event(e, item);
+                  }
+                " :data="formData" v-else :dis="disabled" />
               </div>
             </el-form-item>
           </el-col>
@@ -176,59 +104,32 @@
 
       <!-- 不是响应式 -->
       <template v-else>
-        <!-- show(item.show) -->
-        <el-form-item
-          v-for="(item, index) in for_List"
-          v-if="show(item.show)"
-          :key="index + 'normal'"
-          :prop="item.field"
-          :label="item.title"
-          :rules="item.rules"
-          :label-width="item.labelWidth"
-        >
-          <el-tooltip
-            class="item"
-            effect="dark"
-            placement="right"
-            v-if="item.tip && formData[item.field]"
-          >
+        <!-- item.show === false ? false : true -->
+        <el-form-item v-for="(item, index) in for_List" v-if="item.show === false ? false : true"
+          :key="index + 'normal'" :prop="item.field" :label="item.title" :rules="item.rules"
+          :label-width="item.labelWidth">
+          <el-tooltip class="item" effect="dark" placement="right" v-if="item.tip && formData[item.field]">
             <div slot="content">{{ formData[item.field] }}</div>
 
             <template v-if="item.slot">
               <slot :name="item.slot" />
             </template>
-            <component
-              :is="currentComponent(item.type)"
-              :item="item"
-              @baseFormEvent="
-                (e) => {
-                  event(e, item);
-                }
-              "
-              :data="formData"
-              v-else
-              :dis="disabled"
-              :bossData="data"
-            />
+            <component :is="currentComponent(item.type)" :item="item" @baseFormEvent="
+              (e) => {
+                event(e, item);
+              }
+            " :data="formData" v-else :dis="disabled" :bossData="data" />
           </el-tooltip>
 
           <div v-else>
             <template v-if="item.slot">
               <slot :name="item.slot" />
             </template>
-            <component
-              :is="currentComponent(item.type)"
-              :item="item"
-              @baseFormEvent="
-                (e) => {
-                  event(e, item);
-                }
-              "
-              :data="formData"
-              v-else
-              :dis="disabled"
-              :bossData="data"
-            />
+            <component :is="currentComponent(item.type)" :item="item" @baseFormEvent="
+              (e) => {
+                event(e, item);
+              }
+            " :data="formData" v-else :dis="disabled" :bossData="data" />
           </div>
         </el-form-item>
         <!-- 比如 搜索页面居中的按钮 -->
@@ -272,7 +173,7 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
     dis: {
       default: false,
@@ -437,27 +338,9 @@ export default {
     reset() {
       this.$refs.form.resetFields();
       for (let key of Object.keys(this.data.data)) {
-        this.data.data[key] = null;
+        // this.data.data[key] = null;
+        this.$set(this.data.data, key, null)
       }
-
-      //不要在外部的reset方法里面
-
-      //1 如果在 create里面操作(不包括延迟函数)  this.formData.data.__input = 'create'/this.formData.data = {__input:"setTime mounted"}
-      //reset返回create的初始值
-
-      //2 如果没有在 create里面操作 this.formData.data.__input = '初始值'/this.formData.data = {__input:"setTime mounted"},
-      //reset返回data的初始值
-
-      //3  如果直接给this.data.data  赋值 ,在重置的时候 字段和字段的值不会变
-      // for (let key of Object.keys(this.data.data)) {//解决问题 3
-      //        let res = Object.keys(this._dataxxx).some((key2)=>{
-      // 			return key == key2
-      // 		})
-
-      // 		if(!res){
-      // 			this.data.data[key] = ""
-      // 		}
-      // }
     },
     check() {
       let res = undefined;
@@ -470,9 +353,9 @@ export default {
       });
       return res;
     },
-    show(show) {
-      return show === false ? false : true;
-    },
+    // show(show) {
+    //   return show === false ? false : true;
+    // },
     back() {
       this.data.dom = this.$refs.form; // 将form实例返回到父级
     },

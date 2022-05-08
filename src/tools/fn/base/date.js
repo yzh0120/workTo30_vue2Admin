@@ -1,24 +1,31 @@
 //https://www.cnblogs.com/cjrfan/p/9154539.html
 import dayjs from 'dayjs'
+import typeFn from "./type"
 /* 
 .format('YYYY-MM-DD dddd HH:mm:ss.SSS A') 
  */
 // 增加时间
-function add(date,num,unit = "day",format="YYYY-MM-DD"){
+function add(date = new Date(), num, unit = "day", format = "YYYY-MM-DD") {
+	if (typeFn(date) == "str") {
+		var date = new Date(date.replace(/-/g, "/").replace(/T/g, " "))
+	}
+	// console.log(dayjs(date).add(num, unit).format(format), "dayjs(date).add(num, unit)")
 	return dayjs(date).add(num, unit).format(format)
 }
 //格式化时间对象
-function str(date,format="YYYY-MM-DD"){
-	//var date = new Date(date.replace(/-/g, "/").replace(/T/g, " "))
+function str(date = new Date(), format = "YYYY-MM-DD") {
+	if (typeFn(date) == "str") {
+		var date = new Date(date.replace(/-/g, "/").replace(/T/g, " "))
+	}
 	return dayjs(date).format(format)
 }
 
 //时间差
-function diff(date1,date2,unit = "day"){
-	return dayjs(date1).diff(dayjs(date2),unit)
+function diff(date1, date2, unit = "day") {
+	return dayjs(date1).diff(dayjs(date2), unit)
 }
 
-export default{
+export default {
 	add,
 	str,
 	diff
@@ -52,4 +59,3 @@ export default{
  a	am	pm
  
  */
-

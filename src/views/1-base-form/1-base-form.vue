@@ -151,9 +151,18 @@ export default {
             create: true,
           },
           ////////////////////////////////////////////////////////////////////////
-          { type: "year", field: "_year", title: "年选择器" },
+          {
+            type: "year", field: "_year", title: "年选择器"
+          },
           { type: "month", field: "_month", title: "月选择器" },
-          { type: "date", field: "_date", title: "年月日选择器" },
+          {
+            type: "date", field: "_date", title: "年月日选择器", pickerOpt: {
+              disabledDate: (time) => {
+                // console.log(time.getTime(), new Date(self.$fn.date.add(new Date(), -2, "year")).getTime(), "123123")
+                return time.getTime() < new Date(self.$fn.date.add(new Date(), -2, "year")).getTime();
+              },
+            },
+          },
           { type: "dates", field: "_dates", title: "多年月日选择器" },
           { type: "week", field: "_week", title: "星期选择器" },
           { type: "datetime", field: "_datetime", title: "年月日_时间选择器" },
