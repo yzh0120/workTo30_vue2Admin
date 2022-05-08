@@ -27,8 +27,7 @@ export default {
 // 普通页面
 .page {
   //page
-  min-height: calc(100% - calc(#{$normal_spacing} * 2));
-  // margin: $normal_spacing calc(#{$normal_spacing} * 1.2);//margin: calc(#{$normal_spacing} / 1.5) $normal_spacing;
+  min-height: calc(100vh - calc(#{$normal_spacing} * 5));
   background-color: white;
   padding: calc(#{$normal_spacing} / 1.5) $normal_spacing;
   overflow: auto; //内容溢出滚动

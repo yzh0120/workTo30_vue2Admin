@@ -1,5 +1,5 @@
 <template>
-  <page show>
+  <page>
     123
 
     {{ dataItem }}
