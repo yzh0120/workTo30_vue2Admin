@@ -3,9 +3,7 @@
     <el-button type="primary" @click="go">主要按钮</el-button>
     <base-form :data="form" ref="form" @event="formEvent">
       <template #mySlot>
-        <el-input placeholder="请输入内容" v-model="form.data.xxx">
-          <template slot="prepend">Http://</template>
-        </el-input>
+        <el-checkbox v-model="form.data.checked" @change="change">备选项</el-checkbox>
       </template>
     </base-form>
   </page>
@@ -43,19 +41,20 @@ export default {
           },
 
           ////////////////////////////////////////////////////////////////////////
-          {
-            type: "checkbox",
-            field: "_checkbox",
-            // title: "多选框",
-            span: 24,
-            labelWidth: "0px",
-            opt: [
-              { text1: "显示隐藏", value1: 1 },
-              // { text1: "多选二", value1: 2 },
-            ],
-            text: "text1",
-            value: "value1",
-          },
+          // {
+          //   type: "checkbox",
+          //   field: "_checkbox",
+          //   // title: "多选框",
+          //   span: 24,
+          //   // labelWidth: "0px",
+          //   opt: [
+          //     { text1: "显示隐藏", value1: 1 },
+          //     // { text1: "多选二", value1: 2 },
+          //   ],
+          //   text: "text1",
+          //   value: "value1",
+          // },
+          { slot: "mySlot", field: "checked", title: "多选框",  span: 24, },
           {
             type: "input",
             field: "_input3",
@@ -81,7 +80,7 @@ export default {
           ////////////////////////////////////////////////////////////////////////
 
         ],
-        data: {},
+        data: {checked:true},
         // titleWidth: "160px",
       },
     };
@@ -96,19 +95,22 @@ export default {
     // }
   },
   mounted() {
-
+    // this.formEvent({item:{field:"_checkbox"},name:"checkbox"})
   },
   methods: {
+    change(e){
+      console.log(e,"e")
+      this._setList(this.form, ["_input4", "_input3"], { show: e ? true : false })
+          this._setData(this.form, ["_input4", "_input3"], null)
+    },
 
     formEvent(e) {
-      // console.log(e, "表单事件");
-      if (e.item.field == "_checkbox") {
-        if ((e.name == "checkbox")) {
-          this._setList(this.form, ["_input4", "_input3"], { show: e.value[0] ? true : false })
-          this._setData(this.form, ["_input4", "_input3"], null)
-          // this._setList(this.form, "_input3", { show: e.value[0] ? true : false })
-        }
-      }
+      // if (e.item.field == "_checkbox") {
+      //   if ((e.name == "checkbox")) {
+      //     this._setList(this.form, ["_input4", "_input3"], { show: e.value[0] ? true : false })
+      //     this._setData(this.form, ["_input4", "_input3"], null)
+      //   }
+      // }
 
     },
     go() {
