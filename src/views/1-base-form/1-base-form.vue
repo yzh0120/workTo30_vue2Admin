@@ -45,6 +45,7 @@ export default {
           {
             type: "input",
             field: "_input",
+            labelTip: "若为长期，可不填",
             title: "普通输入框",
             rules: [
               { required: true, message: "请输入" },

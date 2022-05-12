@@ -32,6 +32,15 @@
             <!-- item.show === false ? false : true -->
             <el-form-item v-if="item.show === false ? false : true" :prop="item.field" :label="item.title"
               :rules="item.rules" :label-width="item.labelWidth">
+              <template v-if="item.labelTip" #label>
+                <!-- 问号提示 -->
+                <span>
+                  {{ item.title }}
+                  <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
+                    <i class="el-icon-question"></i>
+                  </el-tooltip>
+                </span>
+              </template>
               <!-- 是否悬浮提示 -->
               <el-tooltip class="item" effect="dark" placement="right" v-if="item.tip && formData[item.field]">
                 <div slot="content">{{ formData[item.field] }}</div>
@@ -71,6 +80,15 @@
             <!-- item.show === false ? false : true -->
             <el-form-item v-if="item.show === false ? false : true" :prop="item.field" :label="item.title"
               :rules="item.rules" :label-width="item.labelWidth">
+              <!-- 问号提示 -->
+              <template v-if="item.labelTip" #label>
+                <span>
+                  {{ item.title }}
+                  <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
+                    <i class="el-icon-question"></i>
+                  </el-tooltip>
+                </span>
+              </template>
               <!-- 是否悬浮提示 -->
               <el-tooltip class="item" effect="dark" placement="right" v-if="item.tip && formData[item.field]">
                 <div slot="content">{{ formData[item.field] }}</div>
@@ -108,6 +126,15 @@
         <el-form-item v-for="(item, index) in for_List" v-if="item.show === false ? false : true"
           :key="index + 'normal'" :prop="item.field" :label="item.title" :rules="item.rules"
           :label-width="item.labelWidth">
+          <!-- 问号提示 -->
+          <template v-if="item.labelTip" #label>
+            <span>
+              {{ item.title }}
+              <el-tooltip class="item" effect="dark" :content="item.labelTip" placement="top-start">
+                <i class="el-icon-question"></i>
+              </el-tooltip>
+            </span>
+          </template>
           <el-tooltip class="item" effect="dark" placement="right" v-if="item.tip && formData[item.field]">
             <div slot="content">{{ formData[item.field] }}</div>
 
