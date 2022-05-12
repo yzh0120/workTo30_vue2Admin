@@ -3,21 +3,15 @@
     <!-- 表单 -->
     <base-form :data="form">
       <template #button>
-        <el-button type="primary" @click="search" native-type="submit"
-          >搜索</el-button
-        >
+        <el-button type="primary" @click="search" native-type="submit">搜索</el-button>
       </template>
     </base-form>
 
     <!-- 表格 -->
     <base-table :data="table" :pager="pagerData" @event="tableEvent">
-      <template #do="{ scope }">
-        <el-button type="text" @click="edit(scope.row, scope.$index)"
-          >编辑</el-button
-        >
-        <el-button type="text" @click="del(scope.row, scope.$index)"
-          >删除</el-button
-        >
+      <template #do="{ row, index }">
+        <el-button type="text" @click="edit(row, index)">编辑</el-button>
+        <el-button type="text" @click="del(row, index)">删除</el-button>
       </template>
     </base-table>
 
@@ -74,8 +68,8 @@ export default {
     this.getData();
   },
   methods: {
-    edit(row) {},
-    del(row, index) {},
+    edit(row) { },
+    del(row, index) { },
     search() {
       this.pagerData.pageNo = 1;
       this.getData();

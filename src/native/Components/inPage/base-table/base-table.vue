@@ -34,29 +34,10 @@
 
 
 <template>
-  <el-table
-    ref="table"
-    v-loading="loading"
-    :data="tableData"
-    border
-    style="width: 100%"
-    :size="size"
-    stripe
-    :height="height"
-    highlight-current-row
-    @select="select_fn"
-    @select-all="select_fn"
-    @current-change="selectRowChange"
-    :show-summary="sum"
-    :summary-method="sumfn"
-    :default-sort="defaultSort"
-    :header-cell-style="headerCellStyle"
-    :row-key="rowKey"
-    :tree-props="treeProps"
-    :lazy="lazy"
-    :load="treeLoad"
-    @expand-change="expandEvent"
-  >
+  <el-table ref="table" v-loading="loading" :data="tableData" border style="width: 100%" :size="size" stripe
+    :height="height" highlight-current-row @select="select_fn" @select-all="select_fn" @current-change="selectRowChange"
+    :show-summary="sum" :summary-method="sumfn" :default-sort="defaultSort" :header-cell-style="headerCellStyle"
+    :row-key="rowKey" :tree-props="treeProps" :lazy="lazy" :load="treeLoad" @expand-change="expandEvent">
     <!-- 多选框 -->
     <!-- <el-table-column
       v-if="selection"
@@ -66,27 +47,15 @@
     ></el-table-column> -->
 
     <!-- <template slot-scope="scope"> -->
-    <el-table-column
-      v-if="selection"
-      type="selection"
-      width="55"
-      :align="align"
-      :selectable="selectInit"
-    >
+    <el-table-column v-if="selection" type="selection" width="55" :align="align" :selectable="selectInit">
     </el-table-column>
     <!-- </template> -->
 
     <!-- 是否显示索引 -->
-    <el-table-column
-      label="序号"
-      type="index"
-      width="50"
-      align="center"
-      v-if="showIndex"
-    >
+    <el-table-column label="序号" type="index" width="50" align="center" v-if="showIndex">
       <template slot-scope="scope" v-if="pager">
         <span>{{
-          (pager.pageNo - 1) * pager.pageSize + scope.$index + 1
+            (pager.pageNo - 1) * pager.pageSize + scope.$index + 1
         }}</span>
       </template>
     </el-table-column>
@@ -94,7 +63,7 @@
     <!-- 展开行 -->
     <el-table-column type="expand" v-if="expand">
       <template slot-scope="scope">
-        <slot name="expand" :scope="scope" />
+        <slot name="expand" :scope="scope" :row="scope.row" :index="scope.$index" />
       </template>
     </el-table-column>
 
@@ -103,10 +72,11 @@
       <base-item :item="item" :data="data" :key="index">
         <!-- 跨组件传插槽 -->
         <template v-slot:[item.slot]="{ scope }">
-          <slot :name="item.slot" :scope="scope"></slot>
+          <slot :name="item.slot" :scope="scope" :row="scope.row" :index="scope.$index"></slot>
         </template>
-      </base-item> </template
-  ></el-table>
+      </base-item>
+    </template>
+  </el-table>
 </template>
   </el-table>
 </template>
@@ -120,7 +90,7 @@ export default {
   },
   props: {
     data: {
-      default: () => {},
+      default: () => { },
     },
     pager: {
       default: false,
@@ -129,7 +99,7 @@ export default {
   data() {
     return {};
   },
-  created() {},
+  created() { },
   mounted() {
     this.back(); // 将table实例返回到父级
   },

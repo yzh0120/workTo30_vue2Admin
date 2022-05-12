@@ -10,9 +10,9 @@
 
     <!-- 表格 -->
     <base-table :data="table" :pager="pagerData" @event="tableEvent">
-      <template #do="{ scope }">
-        <el-button type="text" @click="edit(scope.row, scope.$index)">编辑</el-button>
-        <el-button type="text" @click="del(scope.row, scope.$index)">删除</el-button>
+      <template #do="{ row, index }">
+        <el-button type="text" @click="edit(row, index)">编辑</el-button>
+        <el-button type="text" @click="del(row, index)">删除</el-button>
       </template>
     </base-table>
 

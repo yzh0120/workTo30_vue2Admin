@@ -4,55 +4,29 @@
 
 <template>
   <!-- 多级表头 -->
-  <el-table-column
-    :label="item.title"
-    :key="item.title"
-    :width="width(item)"
-    :align="align"
-    v-if="item.children"
-  >
+  <el-table-column :label="item.title" :key="item.title" :width="width(item)" :align="align" v-if="item.children">
     <template v-for="(item, index) in item.children">
       <baseitem :item="item" :data="data" :key="index"></baseitem>
     </template>
   </el-table-column>
 
   <!-- 插槽 -->
-  <el-table-column
-    v-else-if="item.slot"
-    :prop="item.field"
-    :label="item.title"
-    :key="item.title"
-    :width="width(item)"
-    :align="align"
-  >
+  <el-table-column v-else-if="item.slot" :prop="item.field" :label="item.title" :key="item.title" :width="width(item)"
+    :align="align">
     <!-- 跨组件传插槽 -->
     <!-- 此处只是 el-table的tempalte  -->
     <template slot-scope="scope">
-      <slot :name="item.slot" :scope="scope" />
+      <slot :name="item.slot" :scope="scope" :row="scope.row" :index="scope.$index" />
     </template>
   </el-table-column>
 
   <!-- 悬浮显示 -->
-  <el-table-column
-    v-else-if="item.hover"
-    :prop="item.field"
-    :label="item.title"
-    :key="item.title"
-    :width="width(item)"
-    :align="align"
-    :formatter="item.format"
-    :show-overflow-tooltip="item.tip || data.tip"
-    :fixed="item.fixed"
-    :sortable="item.sort"
-  >
+  <el-table-column v-else-if="item.hover" :prop="item.field" :label="item.title" :key="item.title" :width="width(item)"
+    :align="align" :formatter="item.format" :show-overflow-tooltip="item.tip || data.tip" :fixed="item.fixed"
+    :sortable="item.sort">
     <!-- 悬浮显示其他内容 -->
     <template slot-scope="scope">
-      <el-tooltip
-        effect="dark"
-        placement="right"
-        popper-class="baseTable_popper_class"
-        class="grayg"
-      >
+      <el-tooltip effect="dark" placement="right" popper-class="baseTable_popper_class" class="grayg">
         <div v-html="data.data[scope.$index][item.hover]" slot="content"></div>
         <span>{{ scope.row[item.field] }}</span>
       </el-tooltip>
@@ -60,18 +34,8 @@
   </el-table-column>
 
   <!-- 普通 -->
-  <el-table-column
-    v-else
-    :prop="item.field"
-    :label="item.title"
-    :key="item.title"
-    :width="width(item)"
-    :align="align"
-    :formatter="item.format"
-    :show-overflow-tooltip="item.tip || data.tip"
-    :fixed="item.fixed"
-    :sortable="item.sort"
-  >
+  <el-table-column v-else :prop="item.field" :label="item.title" :key="item.title" :width="width(item)" :align="align"
+    :formatter="item.format" :show-overflow-tooltip="item.tip || data.tip" :fixed="item.fixed" :sortable="item.sort">
   </el-table-column>
 </template>
 
