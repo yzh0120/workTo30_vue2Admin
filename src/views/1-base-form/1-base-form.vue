@@ -17,6 +17,7 @@ export default {
     let self = this;
     return {
       form: {
+        className: "className",
         list: [
           {
             type: "treeselect",
@@ -310,4 +311,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// .className {
+//   padding: 100px
+// }
 </style>

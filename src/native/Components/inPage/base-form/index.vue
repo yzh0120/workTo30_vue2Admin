@@ -20,7 +20,7 @@
  -->
 
 <template>
-  <el-form ref="form" class="page-form" :model="formData" :label-width="labelWidth" style="margin-top: 20px"
+  <el-form ref="form" :class="data.className" :model="formData" :label-width="labelWidth" style="margin-top: 20px"
     :inline="inline" :size="size" @submit.native.prevent :disabled="disabled">
     <div v-if="againShow">
       <!-- 是否响应式 -->

@@ -2,7 +2,7 @@
   <page>
     123
 
-    {{ dataItem }}
+    {{ dataItem.demo }}
   </page>
 </template>
 

@@ -1,21 +1,25 @@
-import { resolve } from "core-js/fn/promise"
+import {
+  resolve
+} from "core-js/fn/promise"
 
 const getters = {
-    dataItem:  ( state) => { 
-        if (state.const.dataItem.length == 0) {
-                setTimeout((() => {
-                    state.const.dataItem = [{}]
-                    // state.commit("const/dataItem_fn",[{}])
-                    // console.log(state.const.dataItem , "-----")
-                }), 1000)
-        
-          
+  dataItem: (state) => {
+    if (state.const.dataItem.length == 0) {
+      setTimeout((() => {
+        state.const.dataItem = {
+          demo: [1, 2]
         }
-            return state.const.dataItem
+        // state.commit("const/dataItem_fn",[{}])
+        // console.log(state.const.dataItem , "-----")
+      }), 1000)
 
-    },
-  }
-  export default getters
+
+    }
+    return state.const.dataItem
+
+  },
+}
+export default getters
 /*
 computed: {
     dataItem() {
@@ -23,4 +27,4 @@ computed: {
     },
   },
 
-*/   
+*/
