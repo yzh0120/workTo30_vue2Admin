@@ -44,42 +44,20 @@
  }
  -->
  <template>
-  <div>
-    <el-progress
-      :percentage="percentage"
-      :text-inside="true"
-      :stroke-width="15"
-      v-if="percentage"
-    ></el-progress>
+  <span>
+    <el-progress :percentage="percentage" :text-inside="true" :stroke-width="15" v-if="percentage"></el-progress>
 
-    <el-upload
-      :disabled="btnDisabled"
-      class="i-upload"
-      :action="uploaduUrl"
-      :show-file-list="false"
-      multiple
-      :on-success="upLoadSuccess"
-      :on-error="error"
-      :before-upload="
+    <el-upload :disabled="btnDisabled" class="i-upload" :action="uploaduUrl" :show-file-list="false" multiple
+      :on-success="upLoadSuccess" :on-error="error" :before-upload="
         (file) => {
           return beforeUpload(file, uploadObj);
         }
-      "
-      :on-change="handleChange"
-      :headers="uploadHeaders"
-      :on-progress="progress"
-    >
-      <el-button
-        :disabled="btnDisabled"
-        size="mini"
-        type="primary"
-        v-on:click="setUploaduUrl"
-        >上传资料</el-button
-      >
+      " :on-change="handleChange" :headers="uploadHeaders" :on-progress="progress">
+      <el-button :disabled="btnDisabled" size="mini" type="primary" v-on:click="setUploaduUrl">上传资料</el-button>
     </el-upload>
 
     <!-- <file-List :arr="uploadObj.detail" :del="true"/> -->
-  </div>
+  </span>
 </template>
  
  <script>
@@ -90,12 +68,12 @@ import * as Cookie from "@/tools/cookjs.js";
           name: "中标通知书",
           taskName: "中标通知书",
           detail: [
-			  
-			  {
-				num:3,  
-				type:["doc", "docx"]
-			  }
-		  ],
+        
+        {
+        num:3,  
+        type:["doc", "docx"]
+        }
+      ],
           require: 0,
         },
  */
@@ -116,6 +94,10 @@ export default {
         return {};
       },
     },
+    url: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
@@ -130,34 +112,44 @@ export default {
   },
   created() {
     this.getFiles(); //获取历史文件///////////////////切换
+
   },
   methods: {
     //获取文件
     getFiles() {
       ///////////////////切换
+      if (this.projectId) {
+        this.$api.file
+          .getFileListByFolderId({
+            folderId: this.projectId,
+            taskName: this.uploadObj.taskName,
+          })
+          .then((res) => {
+            if (res.code == 200) {
+              this.uploadObj.detail = res.data;
+            } else {
+              this.$message.error(res.info);
+            }
+          });
+      }
 
-      this.$api.file
-        .getFileListByFolderId({
-          folderId: this.projectId,
-          taskName: this.uploadObj.taskName,
-        })
-        .then((res) => {
-          if (res.code == 200) {
-            this.uploadObj.detail = res.data;
-          } else {
-            this.$message.error(res.info);
-          }
-        });
     },
     // 0 设置路由
     setUploaduUrl() {
-      this.uploaduUrl =
-        process.env.VUE_APP_BASE_API +
-        "/file/upload" +
-        "?folderId=" +
-        this.projectId +
-        "&taskName=" +
-        this.uploadObj.taskName;
+      if (this.url) {
+        this.uploaduUrl =
+          process.env.VUE_APP_BASE_API + this.url
+      } else if (this.projectId) {
+        this.uploaduUrl =
+          process.env.VUE_APP_BASE_API +
+          "/file/upload" +
+          "?folderId=" +
+          this.projectId +
+          "&taskName=" +
+          this.uploadObj.taskName;
+      }
+
+
     },
     // 1 上传图片之前
     beforeUpload(file, item) {
@@ -207,24 +199,31 @@ export default {
         currentNum = 0;
         this.$message.success(res.data.fileName + "上传成功！");
 
-        this.$api.file
-          .getFileListByFolderId({
-            folderId: this.projectId,
-            taskName: this.uploadObj.taskName,
-          })
-          .then((res) => {
-            if (res.code == 200) {
-              this.uploadObj.detail = res.data;
-              this.$emit("success", {
-                taskName: this.uploadObj.taskName,
-                res,
-                file,
-                fileList,
-              });
-            } else {
-              this.$message.error(res.info);
-            }
-          });
+
+        if (this.url) {
+
+        }
+        if (this.projectId) {
+          this.$api.file
+            .getFileListByFolderId({
+              folderId: this.projectId,
+              taskName: this.uploadObj.taskName,
+            })
+            .then((res) => {
+              if (res.code == 200) {
+                this.uploadObj.detail = res.data;
+                this.$emit("success", {
+                  taskName: this.uploadObj.taskName,
+                  res,
+                  file,
+                  fileList,
+                });
+              } else {
+                this.$message.error(res.info);
+              }
+            });
+        }
+
 
         //      this.$emit("success", {///////////////////切换
         // taskName: this.uploadObj.taskName,
