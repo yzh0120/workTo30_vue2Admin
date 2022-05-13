@@ -36,18 +36,22 @@ export default {
       },
 
       table: {
-        tip: true, //重点
+        // tip: true, //重点
         autoWidth: true,
         head: [
           {
             field: "projectNo",
             title: "项目编号",
+            format({ cellValue }) {
+              return "项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号";
+            },
           },
           {
             field: "userName",
             title: "用户名",
+            tip: true, //重点
             format({ cellValue }) {
-              return "项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号";
+              return "项用户名用户名用户名用户名用户名用户名用户名用户名用户名用户名用户名用户名用户名用户名用户名用户名用户名用户名";
             },
           },
           { slot: "do", title: "操作", width: 150, fixed: "right" },
