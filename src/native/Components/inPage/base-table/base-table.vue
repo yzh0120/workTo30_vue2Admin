@@ -77,8 +77,8 @@
       </base-item>
     </template>
   </el-table>
-</template>
-  </el-table>
+  <!-- </template>
+  </el-table> -->
 </template>
 
 <script>
