@@ -42,7 +42,8 @@ export default {
             field: "projectNo",
             title: "项目编号",
             //重点
-            format(row, column, cellValue, index) {
+            format({ cellValue }) {//row, column, cellValue, index
+              console.log(cellValue)
               //   return self.$fn.num.qian(cellValue);
               return "项目编号";
             },

@@ -46,7 +46,7 @@ export default {
           {
             field: "userName",
             title: "用户名",
-            format(row, column, cellValue, index) {
+            format({ cellValue }) {
               return "项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号项目编号";
             },
           },

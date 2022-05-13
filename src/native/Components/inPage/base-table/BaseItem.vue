@@ -22,8 +22,9 @@
 
   <!-- 悬浮显示 -->
   <el-table-column v-else-if="item.hover" :prop="item.field" :label="item.title" :key="item.title" :width="width(item)"
-    :align="align" :formatter="item.format" :show-overflow-tooltip="item.tip || data.tip" :fixed="item.fixed"
-    :sortable="item.sort">
+    :align="align"
+    :formatter="item.format ? (row, column, cellValue, index) => { return item.format({ cellValue }) } : undefined"
+    :show-overflow-tooltip="item.tip || data.tip" :fixed="item.fixed" :sortable="item.sort">
     <!-- 悬浮显示其他内容 -->
     <template slot-scope="scope">
       <el-tooltip effect="dark" placement="right" popper-class="baseTable_popper_class" class="grayg">
@@ -35,7 +36,8 @@
 
   <!-- 普通 -->
   <el-table-column v-else :prop="item.field" :label="item.title" :key="item.title" :width="width(item)" :align="align"
-    :formatter="item.format" :show-overflow-tooltip="item.tip || data.tip" :fixed="item.fixed" :sortable="item.sort">
+    :formatter="item.format ? (row, column, cellValue, index) => { return item.format({ cellValue }) } : undefined"
+    :show-overflow-tooltip="item.tip || data.tip" :fixed="item.fixed" :sortable="item.sort">
   </el-table-column>
 </template>
 
