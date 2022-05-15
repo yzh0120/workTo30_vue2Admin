@@ -77,18 +77,27 @@ export default {
         {
             path: 'checkbox',
             name: 'baseForm-checkbox',
-            component: () => import( /* webpackChunkName: "7-checkbox-form" */ "@/views/1-base-form/8-checkbox-form.vue"),
+            component: () => import( /* webpackChunkName: "8-checkbox-form" */ "@/views/1-base-form/8-checkbox-form.vue"),
             meta: {
                 title: '复选框显示隐藏表单',
                 icon: "input",
             }
         },
         {
-            path: 'test',
-            name: 'baseForm-test',
-            component: () => import( /* webpackChunkName: "7-test-form" */ "@/views/1-base-form/9-test-form.vue"),
+            path: 'dynamicValidateForm',
+            name: 'baseForm-dynamicValidateForm',
+            component: () => import( /* webpackChunkName: "9-dynamicValidateForm-form" */ "@/views/1-base-form/9-dynamicValidateForm-form.vue"),
             meta: {
-                title: '测试',
+                title: '动态表单',
+                icon: "input",
+            }
+        },
+        {
+            path: 'formToTable',
+            name: 'baseForm-formToTable',
+            component: () => import( /* webpackChunkName: "10-formToTable-form" */ "@/views/1-base-form/10-formToTable-form.vue"),
+            meta: {
+                title: 'table中的form',
                 icon: "input",
             }
         },
