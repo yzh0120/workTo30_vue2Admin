@@ -47,6 +47,25 @@ const routes = [
 			}
 		}]
 	},
+	{
+		path: '/test',
+		name: 'test',
+		redirect: '/baseTest',
+		component: layout,
+		meta:{
+			title: '测试',
+			icon: 'shouye',
+		},
+		children: [{
+			path: 'baseTest',
+			name: 'baseTest',
+			component: () => import( /* webpackChunkName: "baseTest" */ "@/views/baseTest.vue"),
+			meta: {
+				title: '测试',
+				icon: 'dashboard'
+			}
+		}]
+	},
 
 	baseForm,//表单
 	baseTable,//表格
