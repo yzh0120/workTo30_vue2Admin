@@ -50,6 +50,56 @@ export default {
           {
             field: "projectNo",
             title: "项目编号",
+            width: "100px",
+            fixed: "left"
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
+          },
+          {
+            field: "userName",
+            title: "用户名",
           },
           {
             field: "userName",
@@ -133,5 +183,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep {
+  .el-table__cell.el-table__expanded-cell {
+    padding-left: 100px;
+  }
+}
 </style>
 
