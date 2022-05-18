@@ -232,6 +232,15 @@ export default {
 							},
 							component: () => import( /* webpackChunkName: "VCharts-histogram-other-seven" */ "@/views/10-vCharts/1-histogram/other/10-minInterval.vue"),
 						},
+						{
+							path: 'barwidth',
+							name: "VCharts-histogram-other-barwidth",
+							meta: {
+								title: "barwidth",
+								icon: "tubiao-zhexiantu",
+							},
+							component: () => import( /* webpackChunkName: "VCharts-histogram-other-seven" */ "@/views/10-vCharts/1-histogram/other/11-barwidth.vue"),
+						},
 					]
 				}
 			],
