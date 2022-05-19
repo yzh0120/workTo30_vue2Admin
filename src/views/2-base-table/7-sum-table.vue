@@ -39,7 +39,11 @@ export default {
         sum: true, //重点
         sumfn: (param) => {
           //重点
+          //columns 是 某一个列 其中  property 就是 列的字段
+          //data 是 后端返回的数组
+
           const { columns, data } = param;
+          console.log(data, "columns, data")
           const sums = [];
           columns.forEach((column, index) => {
             if (index === 0) {
@@ -52,9 +56,11 @@ export default {
               sums[index] = "N/A";
               return;
             }
+            //value就是整列的数据  
             const values = data.map((item) => {
-              //value就是整列的数据   //特殊操作
-              if (column.property == "ChannelNames" && item[column.property]) {
+              //特殊操作
+              //column.property 就是 列的字段
+              if (column.property == "ChannelNames" && item[column.property]) {//列名是ChannelNames 并且 后端返回的当前数组循环的当前对象中的此属性不为空
                 return item["ChannelNames"].split(",").length;
               } else if (column.property == "UserName") {
                 return NaN;
@@ -63,6 +69,7 @@ export default {
               }
             });
             //列里面有一个数据不是数字则显示N/A
+            //开始合计
             if (values.every((value) => isNaN(value))) {
               sums[index] = "N/A";
             } else {
