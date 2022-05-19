@@ -116,11 +116,13 @@ export default {
     alertEvent(e) {
       if (e.name == "confirm") {
         if (this.$refs.formAlert.check()) {
-          if (this.$fn.type(this.formAlert.data.index) == "und") {
+          console.log(this.$fn.type(this.formAlert.data.index), "this.formAlert.data")
+          if (this.$fn.type(this.formAlert.data.index) == "und") {//如果index不存在,说明还是新数据
             this.formAlert.data.index = this.table.data.length;
             this.table.data.push(this.$fn.deepClone(this.formAlert.data));
-          } else {
-            this.formAlert.data[this.formInfoAlert.data.index] =
+          } else {//旧数据
+            // console.log(this.table.data, this.formAlert.data)
+            this.table.data[this.formAlert.data.index] =
               this.$fn.deepClone(this.formAlert.data);
           }
 
