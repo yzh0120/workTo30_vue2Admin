@@ -77,7 +77,7 @@ import * as Cookie from "@/tools/cookjs.js";
           require: 0,
         },
  */
-let currentNum = 0;
+// let currentNum = 0;
 export default {
   props: {
     // limit: {
@@ -105,6 +105,7 @@ export default {
   },
   data() {
     return {
+      currentNum: 0,
       percentage: 0,
       uploaduUrl: "", //process.env.VUE_APP_down_API + "/v1/base/file/upload", //上传地址
       btnDisabled: false,
@@ -159,7 +160,7 @@ export default {
     beforeUpload(file, item) {
       let activeFileType = file.name.split(".").pop();
       // return new Promise((resolve, reject) => {
-      if (item.num && item.detail.length + currentNum >= item.num) {
+      if (item.num && item.detail.length + this.currentNum >= item.num) {
         this.btnDisabled = !this.btnDisabled;
         this.$message.error(`只能上传${item.num}个`);
         // reject();
@@ -177,7 +178,7 @@ export default {
         return false;
       } else {
         // resolve();
-        currentNum++;
+        this.currentNum++;
         return true;
       }
       // });
@@ -200,7 +201,7 @@ export default {
     //3 文件上传成功
     upLoadSuccess(res, file, fileList) {
       if (res.code == 200) {
-        currentNum = 0;
+        this.currentNum = 0;
         this.$message.success(res.data.fileName + "上传成功！");
 
 
