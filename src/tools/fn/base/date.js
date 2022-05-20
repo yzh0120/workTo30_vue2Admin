@@ -1,3 +1,10 @@
+/*
+ * @Author: yz
+ * @Date: 2022-05-05 16:13:01
+ * @Description: 
+ * @FilePath: \workTo30_vue2Admin\src\tools\fn\base\date.js
+ * 
+ */
 //https://www.cnblogs.com/cjrfan/p/9154539.html
 import dayjs from 'dayjs'
 import typeFn from "./type"
@@ -25,10 +32,37 @@ function diff(date1, date2, unit = "day") {
 	return dayjs(date1).diff(dayjs(date2), unit)
 }
 
+//获取当月第一天
+function getCurrentMonthFirst() {
+	var date = new Date();
+	date.setDate(1);
+	var months = parseInt(date.getMonth() + 1);
+	var days = date.getDate();
+	if (months < 10) {
+		months = '0' + months
+	}
+	if (days < 10) {
+		days = '0' + days
+	}
+	return date.getFullYear() + '-' + months + '-' + days;
+}
+//获取当月最后一天
+function getCurrentMonthLast() {
+	var y = new Date().getFullYear(); //获取年份
+	var m = new Date().getMonth() + 1; //获取月份
+	var d = new Date(y, m, 0).getDate(); //获取当月最后一日
+	m = m < 10 ? '0' + m : m; //月份补 0
+	d = d < 10 ? '0' + d : d; //日数补 0
+
+	return [y, m, d].join("-")
+}
+
 export default {
 	add,
 	str,
-	diff
+	diff,
+	getCurrentMonthFirst,
+	getCurrentMonthLast
 }
 
 
