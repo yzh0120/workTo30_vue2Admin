@@ -294,6 +294,15 @@ export default {
 						icon: "tubiao-zhexiantu",
 					},
 					component: () => import( /* webpackChunkName: "VCharts-pie-auto-animation" */ "@/views/10-vCharts/3-pie/2-auto-animation.vue"),
+				},
+				{
+					path: 'radiusAndCenter',
+					name: "VCharts-pie-auto-radiusAndCenter",
+					meta: {
+						title: '饼图半径和center',
+						icon: "tubiao-zhexiantu",
+					},
+					component: () => import( /* webpackChunkName: "VCharts-pie-auto-radiusAndCenter" */ "@/views/10-vCharts/3-pie/3-radiusAndCenter.vue"),
 				}
 			]
 		},
