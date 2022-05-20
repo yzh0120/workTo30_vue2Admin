@@ -1,6 +1,13 @@
+<!--
+ * @Author: yz
+ * @Date: 2022-05-10 09:40:48
+ * @Description: ,
+ * @FilePath: \workTo30_vue2Admin\src\views\base.vue
+ * 
+-->
 <template>
   <page>
-    123
+
 
     {{ dataItem.demo }}
   </page>
@@ -12,6 +19,9 @@ export default {
     dataItem() {
       return this.$store.getters.dataItem;
     },
+  },
+  mounted() {
+    console.log(this.$fn.uuid(), "this. $fn.uuid()")
   },
 };
 </script>
