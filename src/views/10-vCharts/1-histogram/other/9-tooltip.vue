@@ -57,12 +57,13 @@ export default {
 					}
 					return html
 				},
-				backgroundColor: "rgba(0,0,0,.7)",//#fff
-				textStyle: {
-					color: "#000",
-				},
-				borderColor: "#9933cc",
-				borderWidth: 1, //边框
+				//没有下面这些样式 就会用默认样式
+				// backgroundColor: "rgba(0,0,0,.7)",//#fff
+				// textStyle: {
+				// 	color: "#000",
+				// },
+				// borderColor: "#9933cc",
+				// borderWidth: 1, //边框
 				position: function (a) {
 					//悬浮窗到点的距离
 					a[0] = a[0] - 63;
