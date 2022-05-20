@@ -45,7 +45,7 @@ export default {
 					let html = ""
 					//9-tooltip其实就是html文本
 					//data[0]是维度  data[1]就是值
-					html = `${params[0].data[0]} :
+					html = `${params[0].data[0]}月:
 									</br>	
 					`
 					for (let x = 0; x < params.length; x++) {
