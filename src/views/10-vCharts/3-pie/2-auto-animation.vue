@@ -19,7 +19,10 @@ export default {
 		this.chartEvents = {
 			click: function (e) {//点击事件
 				self.name = e.name;//没啥用
-				console.log(e);
+				console.log(e, "单击");
+			},
+			dblclick: function (e) {
+				console.log(e, "双击")
 			},
 			mouseover(e) {//移入事件
 				console.log('11111')
