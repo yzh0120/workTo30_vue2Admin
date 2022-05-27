@@ -53,7 +53,8 @@
           return beforeUpload(file, uploadObj);
         }
       " :on-change="handleChange" :headers="uploadHeaders" :on-progress="progress">
-      <el-button :disabled="btnDisabled" size="mini" type="primary" v-on:click="setUploaduUrl">{{ btnText }}</el-button>
+      <el-button :disabled="btnDisabled" :size="size" type="primary" v-on:click="setUploaduUrl">{{ btnText }}
+      </el-button>
     </el-upload>
 
     <!-- <file-List :arr="uploadObj.detail" :del="true"/> -->
@@ -101,6 +102,10 @@ export default {
     btnText: {
       type: String,
       default: "上传资料",
+    },
+    size: {
+      type: String,
+      default: "mini",
     }
   },
   data() {
