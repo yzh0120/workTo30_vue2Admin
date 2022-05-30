@@ -1,8 +1,16 @@
+/*
+ * @Author: yz
+ * @Date: 2022-05-30 16:53:38
+ * @Description: 
+ * @FilePath: \workTo30_vue2Admin\vue.config.js
+ * 
+ */
 const path = require('path')
 const webpack = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
+
 function self_resolve(dir) {
-  return path.join(__dirname, dir)
+	return path.join(__dirname, dir)
 }
 
 module.exports = {
@@ -14,32 +22,32 @@ module.exports = {
 	// 配置 webpack
 	configureWebpack: config => {
 		if (process.env.NODE_ENV === 'production') { // 为生产环境修改配置... 压缩代码
-					//多chunk文件,并行下载 
-			      config.optimization = {
-			            splitChunks: {
-			              chunks: 'all',
-			              cacheGroups: {
-			                'element-ui': {
-			                  name: 'element-ui',
-			                  test: /[\\/]node_modules[\\/]element-ui[\\/]/,
-			                  priority: 20
-			                },
-			                'vendors': {
-			                  name: 'vendors', // 打包后的文件名
-			                  test: /[\\/]node_modules[\\/]/, // 匹配规则
-			                  priority: 10,//权重
-							  chunks: 'initial' // 一般用initial打包规则，chunks可配置的参数有：all, async和initial三种。具体区别详见： https://juejin.im/post/5c08fe7d6fb9a04a0d56a702
-			                },
-							commons: {
-								name: 'chunk-commons',
-								test: self_resolve('src'), // can customize your rules
-								minChunks: 2, //  重复2次才能打包到此模块   webpack4之splitChunks.minChunks https://blog.csdn.net/YaoDeBiAn/article/details/104149392
-								priority: 5,
-								reuseExistingChunk: true
-							}
-			              }
-			            },
+			//多chunk文件,并行下载 
+			config.optimization = {
+				splitChunks: {
+					chunks: 'all',
+					cacheGroups: {
+						'element-ui': {
+							name: 'element-ui',
+							test: /[\\/]node_modules[\\/]element-ui[\\/]/,
+							priority: 20
+						},
+						'vendors': {
+							name: 'vendors', // 打包后的文件名
+							test: /[\\/]node_modules[\\/]/, // 匹配规则
+							priority: 10, //权重
+							chunks: 'initial' // 一般用initial打包规则，chunks可配置的参数有：all, async和initial三种。具体区别详见： https://juejin.im/post/5c08fe7d6fb9a04a0d56a702
+						},
+						commons: {
+							name: 'chunk-commons',
+							test: self_resolve('src'), // can customize your rules
+							minChunks: 2, //  重复2次才能打包到此模块   webpack4之splitChunks.minChunks https://blog.csdn.net/YaoDeBiAn/article/details/104149392
+							priority: 5,
+							reuseExistingChunk: true
+						}
 					}
+				},
+			}
 
 		}
 		config.resolve = { //配置别名和默认后缀
@@ -70,10 +78,10 @@ module.exports = {
 	},
 	chainWebpack: (config) => {
 		config.plugin('html')
-		.tap(args => {
-			args[0].title = "保函业务操作系统";
-			return args;
-		})
+			.tap(args => {
+				args[0].title = "保函业务操作系统";
+				return args;
+			})
 		// 生产环境，开启js\css压缩
 		if (process.env.NODE_ENV === 'production') {
 			/* gzip压缩 */
