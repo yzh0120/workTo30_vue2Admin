@@ -91,12 +91,22 @@ export default {
 			}
 
 		},
+		//批量改变data到同一个值
 		_setData(formInfo, fieldValue, valueStr) {
+			//只在组件外部使用
 			fieldValue.forEach((item_fieldValue) => {
 				this.$set(formInfo.data, item_fieldValue, valueStr)
 			})
 
 		},
+		//控件隐藏并且清除值
+		_setShow(formInfo, fieldValue, valueObj) {
+			this._setList(formInfo, fieldValue, Object.assign({
+				show: true,
+			}), valueObj);
+			this.$set(formInfo.data, fieldValue, null)
+		},
+		//应该废弃
 		_setList(formInfo, fieldValue, valueObj) {
 			if (this.$fn.type(valueObj) == "obj") { //this._set(this.addApplyForm, "degreeType", { opt: data,xxx:xxx });
 				if (this.$fn.type(fieldValue) == "str") { //单个
