@@ -211,7 +211,12 @@ export default {
 
 
         if (this.url) {
-
+                this.$emit("success", { 
+                  taskName: this.uploadObj.taskName,
+                  res,
+                  file,
+                  fileList,
+                });
         }
         if (this.projectId) {
           this.$api.file
