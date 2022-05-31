@@ -99,10 +99,10 @@ export default {
 			})
 
 		},
-		//控件隐藏并且清除值
-		_setShow(formInfo, fieldValue, valueObj) {
+		//清除值
+		_setNull(formInfo, fieldValue, valueObj) {
 			this._setList(formInfo, fieldValue, Object.assign({
-				show: true,
+				//show: true,
 			}), valueObj);
 			this.$set(formInfo.data, fieldValue, null)
 		},
