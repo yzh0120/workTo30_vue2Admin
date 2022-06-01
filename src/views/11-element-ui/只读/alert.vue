@@ -1,3 +1,10 @@
+<!--
+ * @Author: yz
+ * @Date: 2022-05-05 16:13:01
+ * @Description: 
+ * @FilePath: \workTo30_vue2Admin\src\views\11-element-ui\只读\alert.vue
+ * 
+-->
 <template>
 </template>
 
@@ -18,6 +25,9 @@ this.$message({
  
 <!-- 	
 let con = await this.$confirm(`确定移除 ？`).catch((e) => {});
+
+
+
 let con = await this.$confirm("确认该项目申请当期上会吗？", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -26,7 +36,10 @@ let con = await this.$confirm("确认该项目申请当期上会吗？", "提示
 
 if (con == "confirm") {
 	//保存修改
-} else{
+} 
+
+
+else{
 	//右上角取消 或者 取消按钮
 }
 

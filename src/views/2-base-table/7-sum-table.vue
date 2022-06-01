@@ -57,17 +57,25 @@ export default {
               return;
             }
             //value就是整列的数据  
-            const values = data.map((item) => {
-              //特殊操作
-              //column.property 就是 列的字段
-              if (column.property == "ChannelNames" && item[column.property]) {//列名是ChannelNames 并且 后端返回的当前数组循环的当前对象中的此属性不为空
-                return item["ChannelNames"].split(",").length;
-              } else if (column.property == "UserName") {
-                return NaN;
-              } else {
-                return Number(item[column.property]);
-              }
-            });
+            // const values = data.map((item) => {
+            //   //特殊操作
+            //   //column.property 就是 列的字段
+            //   if (column.property == "ChannelNames" && item[column.property]) {//列名是ChannelNames 并且 后端返回的当前数组循环的当前对象中的此属性不为空
+            //     return item["ChannelNames"].split(",").length;
+            //   } else if (column.property == "UserName") {
+            //     return NaN;
+            //   } else {
+            //     return Number(item[column.property]);
+            //   }
+            // });
+            const values = data.map(item => {//value就是整列的数据
+                    if ((column.property == "UserName" || column.property == "CompanyFee" ) && item[column.property]) {//特殊操作
+                        return Number(item[column.property])
+                    }
+                    else {
+                        return NaN
+                    }
+                });
             //列里面有一个数据不是数字则显示N/A
             //开始合计
             if (values.every((value) => isNaN(value))) {
