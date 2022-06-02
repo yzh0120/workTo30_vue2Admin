@@ -1,14 +1,16 @@
 <template>
   <div>
     <div class="panel" :class="addType">
+			<!-- 头部 -->
       <div :class="[`panel-heading`]" @click="bodyHandle" :style="{fontSize:sizeComputed}">
 			<div  v-if="head">{{head}}</div>
-			<slot name="head"></slot>
+				<slot name="head"></slot>
       </div>
+			<!-- 身体 -->
       <div class="panel-body" :style="{height:height}">
-		<div  ref="innerBodyBody" style="padding: 15px;">
-			<slot></slot>
-		</div>
+					<div  ref="innerBodyBody" style="padding: 15px;">
+						<slot></slot>
+					</div>
       </div>
     </div>
   </div>
@@ -63,10 +65,14 @@
 	  mounted(){
 		if(this.close){
 		  this.showBody = false
+		}else{
+			this.height = this.$refs.innerBodyBody.offsetHeight+'px'
+			this.count++ 
 		}
 		
 		const _this = this;
 		const erd = elementResizeDetectorMaker()
+		//监听
 		erd.listenTo(_this.$refs.innerBodyBody,(element)=>{
 			_this.$nextTick(()=>{
 				if(this.count === 0){
