@@ -1,18 +1,18 @@
+<!--
+ * @Author: yz
+ * @Date: 2022-05-05 16:13:01
+ * @Description: 
+ * @FilePath: \workTo30_vue2Admin\src\layout\index.vue
+ * 
+-->
 <template>
   <el-container>
     <!-- 侧边栏 -->
-    <el-aside
-      width="auto"
-      :class="[
-        $store.state.setup.mobile ? 'mobile' : '',
-        $store.state.setup.mobile && !isCollapse ? 'mobile-show' : '',
-      ]"
-    >
-      <div
-        class="mantle"
-        v-if="$store.state.setup.mobile && !isCollapse"
-        @click="eve"
-      ></div>
+    <el-aside width="auto" :class="[
+      $store.state.setup.mobile ? 'mobile' : '',
+      $store.state.setup.mobile && !isCollapse ? 'mobile-show' : '',
+    ]">
+      <div class="mantle" v-if="$store.state.setup.mobile && !isCollapse" @click="eve"></div>
       <!-- <myAside class="sidebar-container" v-if="!$store.state.setup.mobile || isCollapse"></myAside> -->
 
       <Logo></Logo>
@@ -22,17 +22,12 @@
     <el-container>
       <el-header class="el-header">
         <headerTop></headerTop>
-        <tagsView
-          :keep-alive-component-instance="keepAliveComponentInstance"
-          blankRouteName="blank"
-        ></tagsView>
+        <tagsView :keep-alive-component-instance="keepAliveComponentInstance" blankRouteName="blank"></tagsView>
       </el-header>
 
       <!-- <el-main element-loading-text="页面加载中" v-loading="$store.state.router.elMainLoading"> -->
-      <el-main
-        v-loading="$store.state.axios.axiosLoading.loading"
-        :element-loading-text="$store.state.axios.axiosLoading.text"
-      >
+      <el-main v-loading="$store.state.axios.axiosLoading.loading"
+        :element-loading-text="$store.state.axios.axiosLoading.text">
         <!--此div是为了获取子节点的 keepAliveComponentInstance 组件实例 -->
         <div ref="keepAliveContainer" class="app_main" id="app_main">
           <transition name="fade-transform" mode="out-in">
@@ -44,6 +39,8 @@
       </el-main>
 
       <!-- <el-footer>Footer</el-footer> -->
+      <!-- 预览弹窗 -->
+      <preLook v-if="$store.state.setup.preLook"></preLook>
     </el-container>
   </el-container>
 </template>
@@ -53,6 +50,7 @@ import Logo from "./components/myAside/logo";
 import headerTop from "@/layout/components/headerTop/index.vue";
 import myAside from "@/layout/components/myAside/index.vue";
 import tagsView from "@/layout/components/TagsView/index";
+import preLook from "@/native/Components/inPage/preLook";
 export default {
   name: "",
   components: {
@@ -60,6 +58,7 @@ export default {
     headerTop,
     myAside,
     tagsView,
+    preLook,
   },
   methods: {
     eve(e) {
