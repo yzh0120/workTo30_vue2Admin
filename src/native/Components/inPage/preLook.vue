@@ -70,6 +70,7 @@ export default {
     }
   },
   mounted() {
+    // this.$store.state.config.preLook = [{ fileId: item.id }, "filedownload",]
     this.download(...this.$store.state.config.preLook)
   },
   methods: {
