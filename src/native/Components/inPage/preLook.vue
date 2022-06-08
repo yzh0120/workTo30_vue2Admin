@@ -22,6 +22,10 @@
         </template>
       </template>
 
+      <template v-if="fileType == `docx`">
+        <div ref="file"></div>
+      </template>
+
       <template #footer>
         <div>
           <template v-if="fileType == `pdf`">
@@ -37,10 +41,11 @@
 </template>
 
 <script>
-
+//pdf
 import pdf from 'vue-pdf'
-
 import CMapReaderFactory from 'vue-pdf/src/CMapReaderFactory.js';
+//docx
+var docx = require('docx-preview')
 
 import axios from 'axios';
 import {
@@ -183,19 +188,24 @@ export default {
             if (this.fileType == "pdf") {
               let fileURL = null
               var blob = new Blob([response.data], { type: 'application/pdf' })
-              if (window.createObjectURL != undefined) { // basic
-                fileURL = window.createObjectURL(blob);
-              } else if (window.webkitURL != undefined) { // webkit or chrome
-                try {
-                  fileURL = window.webkitURL.createObjectURL(blob);
-                } catch (error) { console.log(error) }
-              } else if (window.URL != undefined) { // mozilla(firefox)
-                try {
-                  fileURL = window.URL.createObjectURL(blob);
-                } catch (error) { console.log(error) }
-              }
+              fileURL = URL.createObjectURL(blob);
+              // if (window.createObjectURL != undefined) { // basic
+              //   fileURL = window.createObjectURL(blob);
+              // } else if (window.webkitURL != undefined) { // webkit or chrome
+              //   try {
+              //     fileURL = window.webkitURL.createObjectURL(blob);
+              //   } catch (error) { console.log(error) }
+              // } else if (window.URL != undefined) { // mozilla(firefox)
+              //   try {
+              //     fileURL = window.URL.createObjectURL(blob);
+              //   } catch (error) { console.log(error) }
+              // }
               this.pdfSrc = fileURL
               this.getPDFnums(this.pdfSrc)
+            } else if (this.fileType == "docx") {//docx
+              this.$nextTick(() => {
+                docx.renderAsync(response.data, this.$refs.file) // 渲染到页面
+              })
             }
           })
           .catch(err => {
