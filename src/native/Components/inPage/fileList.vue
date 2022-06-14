@@ -94,7 +94,7 @@ export default {
     check() {
       let checkOK = true;
       try {
-        this.$refs.uploadscanned.fileList.forEach((item) => {
+        this.fileList.forEach((item) => {
           if (item.required) {
             if (!item.detail[0]) {
               this.$message.error(`请上传${item.name}`);

@@ -9,15 +9,8 @@ data：{
  -->
 <!-- :show-close="false" -->
 <template>
-  <vxe-modal
-    v-model="flag"
-    :width="w"
-    :height="h"
-    showFooter
-    :title="title"
-    @close="cancel"
-    :show-zoom="true"
-  >
+  <vxe-modal ref="modal" v-model="flag" :width="w" :height="h" showFooter :title="title" @close="cancel"
+    :show-zoom="true">
     <slot></slot>
 
     <template #footer>
