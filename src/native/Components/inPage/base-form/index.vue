@@ -265,7 +265,7 @@ export default {
             this.data.list.forEach((item) => {
               item = Object.assign(item, obj, this.$fn.deepClone(item));
             });
-          } else {
+          } else {//一个都没值
             let obj = {
               xs: 24, //<768px
               sm: 12, //≥768px
