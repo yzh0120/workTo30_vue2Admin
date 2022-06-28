@@ -45,6 +45,8 @@ export default {
 					let html = ""
 					//9-tooltip其实就是html文本
 					//data[0]是维度  data[1]就是值
+					//params[x].seriesName  后端字段
+					//params[x].data[1]    后端字段对应的值
 					html = `${params[0].data[0]}月:
 									</br>	
 					`
