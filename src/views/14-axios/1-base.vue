@@ -12,16 +12,12 @@
 
     <el-card>
       <div slot="header">默认请求的时候在整个页面自动加载和取消loading动画</div>
-      <el-button type="primary" @click="loading_all_fn"
-        >在整个页面自动加载和取消loading动画</el-button
-      >
+      <el-button type="primary" @click="loading_all_fn">在整个页面自动加载和取消loading动画</el-button>
     </el-card>
 
     <el-card>
       <div slot="header">可以选择在某个区域自动加载和取消loading动画</div>
-      <el-button type="primary" @click="loading_fn"
-        >在某个区域自动加载和取消loading动画</el-button
-      >
+      <el-button type="primary" @click="loading_fn">在某个区域自动加载和取消loading动画</el-button>
       <el-table :data="tableData" style="width: 100%" v-loading="loading">
         <el-table-column prop="date" label="日期" width="180">
         </el-table-column>
@@ -134,7 +130,7 @@ export default {
     },
     tip() {
       let other = {
-        tip: "确认?",
+        tip: "确认删除?",
       };
       //点击取消 会 执行第二个函数, 因为会触发catch，所以有tip的请求 必须判断 err 是不是 cancel
       this.$api.test.twoHundred({}, other).then(
@@ -152,9 +148,9 @@ export default {
     },
     allSet() {
       /*
-		Promise 中的三兄弟 .all(), .race(), .allSettled()
-		https://segmentfault.com/a/1190000020034361
-		*/
+    Promise 中的三兄弟 .all(), .race(), .allSettled()
+    https://segmentfault.com/a/1190000020034361
+    */
       let loadingInstance = Loading.service({
         lock: true,
         text: "所有请求全部有响应的时候,才取消动画",
@@ -173,7 +169,7 @@ export default {
       });
     },
   },
-  mounted() {},
+  mounted() { },
 };
 </script>
 
