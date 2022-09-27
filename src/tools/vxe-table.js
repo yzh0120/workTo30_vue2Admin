@@ -1,22 +1,22 @@
 import {
 	// VXETable,//核心
-	
+
 	// // 功能模块
-	// Header,//头部
-	// Footer,//尾部
-	Icon,//图标
+	Header, //头部
+	Footer, //尾部
+	Icon, //图标
 	// Filter,//过滤
 	// Edit,//编辑
 	// Menu,//菜单
 	// Export,//导出
 	// Keyboard,
 	// Validator,//校验
-	
+
 	//可选组件
-    Modal,//弹窗
+	Modal, //弹窗
 	// Column,//列
-	Table,//表格
-	Grid,//高级表格
+	Table, //表格
+	Grid, //高级表格
 	// Toolbar,//工具栏
 	// Button,//按钮
 	// Input,//输入框
@@ -25,17 +25,17 @@ import {
 	// Optgroup,
 	// Option,
 	// Switch,//开关
-	
-	
+
+
 } from 'vxe-table'
 
 
 
 const vxeTable = {
-	install: function(Vue) {
+	install: function (Vue) {
 		// Vue.use(VXETable)
-		// Vue.use(Footer)
-		// Vue.use(Header)
+		Vue.use(Footer)
+		Vue.use(Header)
 		Vue.use(Icon)
 		// Vue.use(Filter)//vxe.error.useErr
 		// Vue.use(Edit)//vxe.error.useErr
@@ -43,7 +43,7 @@ const vxeTable = {
 		// Vue.use(Export)//vxe.error.useErr
 		// Vue.use(Keyboard)//vxe.error.useErr
 		// Vue.use(Validator)//vxe.error.useErr
-		
+
 		//可选组件
 		Vue.use(Modal)
 		// Vue.use(Column)
@@ -58,11 +58,11 @@ const vxeTable = {
 		// Vue.use(Option)
 		// Vue.use(Switch)
 
-		
+
 	}
-	
+
 }
-export default vxeTable 
+export default vxeTable
 
 
 // VXETable.setup({
